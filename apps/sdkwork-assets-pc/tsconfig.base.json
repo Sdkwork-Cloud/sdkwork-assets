@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "useDefineForClassFields": false,
+    "module": "ESNext",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "jsx": "react-jsx",
+    "types": ["vite/client"],
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "ignoreDeprecations": "6.0",
+    "baseUrl": ".",
+    "paths": {
+      "@sdkwork/assets-pc-auth": ["packages/sdkwork-assets-pc-auth/src/index.ts"],
+      "@sdkwork/assets-pc-assets": ["packages/sdkwork-assets-pc-assets/src/index.ts"],
+      "@sdkwork/assets-pc-commons": ["packages/sdkwork-assets-pc-commons/src/index.ts"],
+      "@sdkwork/assets-pc-core": ["packages/sdkwork-assets-pc-core/src/index.ts"],
+      "@sdkwork/assets-pc-i18n": ["packages/sdkwork-assets-pc-i18n/src/index.ts"],
+      "@sdkwork/assets-pc-shell": ["packages/sdkwork-assets-pc-shell/src/index.ts"],
+      "@sdkwork/sdk-common": ["../../../sdkwork-sdk-commons/sdkwork-sdk-common-typescript/dist/index.d.ts"],
+      "@sdkwork/iam-app-sdk": ["../../../sdkwork-iam/sdks/sdkwork-iam-app-sdk/sdkwork-iam-app-sdk-typescript/src/index.ts"],
+      "@sdkwork/iam-backend-sdk": ["../../../sdkwork-iam/sdks/sdkwork-iam-backend-sdk/sdkwork-iam-backend-sdk-typescript/src/index.ts"],
+      "@sdkwork/auth-pc-react": ["../../../sdkwork-iam/apps/sdkwork-iam-pc/packages/sdkwork-auth-pc-react/src/index.ts"],
+      "@sdkwork/auth-runtime-pc-react": ["../../../sdkwork-iam/apps/sdkwork-iam-pc/packages/sdkwork-auth-runtime-pc-react/src/index.ts"],
+      "@sdkwork/drive-app-sdk": ["../../../sdkwork-drive/sdks/sdkwork-drive-app-sdk/sdkwork-drive-app-sdk-typescript/src/index.ts"],
+      "@sdkwork/utils": ["../../../sdkwork-utils/packages/sdkwork-utils-typescript/src/index.ts"]
+    },
+    "noEmit": true
+  }
+}

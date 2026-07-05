@@ -1,0 +1,42 @@
+{
+  "component": {
+    "name": "@sdkwork/assets-pc-react",
+    "type": "application-root",
+    "domain": "content",
+    "capability": "assets",
+    "languages": ["typescript"],
+    "status": "active"
+  },
+  "canonicalSpecs": [
+    { "id": "COMPONENT_SPEC", "path": "../../../sdkwork-specs/COMPONENT_SPEC.md" },
+    { "id": "DRIVE_SPEC", "path": "../../../sdkwork-specs/DRIVE_SPEC.md" },
+    { "id": "FRONTEND_SPEC", "path": "../../../sdkwork-specs/FRONTEND_SPEC.md" },
+    { "id": "APP_PC_ARCHITECTURE_SPEC", "path": "../../../sdkwork-specs/APP_PC_ARCHITECTURE_SPEC.md" },
+    { "id": "APP_SDK_INTEGRATION_SPEC", "path": "../../../sdkwork-specs/APP_SDK_INTEGRATION_SPEC.md" },
+    { "id": "CONFIG_SPEC", "path": "../../../sdkwork-specs/CONFIG_SPEC.md" },
+    { "id": "API_SPEC", "path": "../../../sdkwork-specs/API_SPEC.md" }
+  ],
+  "integration": {
+    "sdkClients": [
+      { "family": "sdkwork-drive-app-sdk", "npm": "@sdkwork/drive-app-sdk" },
+      { "family": "sdkwork-iam-app-sdk", "npm": "@sdkwork/iam-app-sdk" }
+    ],
+    "sdkDependencies": [
+      {
+        "workspace": "@sdkwork/drive-app-sdk",
+        "surface": "app-api",
+        "credentialMode": "authenticated-app-api"
+      },
+      {
+        "workspace": "@sdkwork/iam-app-sdk",
+        "surface": "app-api",
+        "credentialMode": "authenticated-app-api"
+      }
+    ],
+    "forbidden": [
+      "raw-http-to-drive-apis",
+      "parallel-asset-storage-tables",
+      "custom-upload-presign-endpoints"
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "kind": "sdkwork.component.spec",
+  "component": {
+    "name": "@sdkwork/assets-pc-core",
+    "type": "react-package",
+    "root": "sdkwork-assets/apps/sdkwork-assets-pc/packages/sdkwork-assets-pc-core",
+    "domain": "content",
+    "capability": "assets",
+    "languages": ["typescript", "react"],
+    "generated": false,
+    "private": true
+  },
+  "contracts": {
+    "publicExports": [".", "./sdk", "./modules", "./host", "./session", "./composition"],
+    "sdkDependencies": [
+      {
+        "workspace": "@sdkwork/drive-app-sdk",
+        "surface": "app-api",
+        "credentialMode": "authenticated-app-api"
+      },
+      {
+        "workspace": "@sdkwork/iam-app-sdk",
+        "surface": "app-api",
+        "credentialMode": "authenticated-app-api"
+      },
+      {
+        "workspace": "sdkwork-drive-app-sdk",
+        "surface": "app-api",
+        "credentialMode": "authenticated-app-api"
+      },
+      {
+        "workspace": "sdkwork-iam-app-sdk",
+        "surface": "app-api",
+        "credentialMode": "authenticated-app-api"
+      }
+    ]
+  }
+}

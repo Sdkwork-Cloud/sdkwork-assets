@@ -1,0 +1,7 @@
+{
+  "component": {
+    "domain": "content",
+    "capability": "assets-contract",
+    "description": "Rust contract types for SDKWork unified asset management aligned with MEDIA_RESOURCE_SPEC and DRIVE_SPEC."
+  }
+}

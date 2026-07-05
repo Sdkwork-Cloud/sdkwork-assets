@@ -1,0 +1,54 @@
+{
+  "name": "@sdkwork/assets-pc-react",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "packageManager": "pnpm@10.33.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "pnpm install:shared-sdk && pnpm build:packages && vite build",
+    "build:packages": "pnpm -r --filter \"./packages/**\" run build",
+    "install:shared-sdk": "node scripts/prepare-shared-sdk-packages.mjs",
+    "typecheck": "pnpm install:shared-sdk && pnpm --filter @sdkwork/assets-pc-* run typecheck",
+    "test": "pnpm install:shared-sdk && pnpm --filter @sdkwork/assets-pc-* run test && vitest run --passWithNoTests",
+    "verify": "pnpm typecheck && pnpm test && pnpm build",
+    "clean": "node -e \"import('node:fs/promises').then(fs => fs.rm('dist', { recursive: true, force: true }))\""
+  },
+  "dependencies": {
+    "@sdkwork/assets-pc-assets": "workspace:*",
+    "@sdkwork/assets-pc-auth": "workspace:*",
+    "@sdkwork/assets-pc-commons": "workspace:*",
+    "@sdkwork/assets-pc-core": "workspace:*",
+    "@sdkwork/assets-pc-i18n": "workspace:*",
+    "@sdkwork/assets-pc-shell": "workspace:*",
+    "@sdkwork/auth-pc-react": "workspace:*",
+    "@sdkwork/utils": "workspace:*",
+    "@tanstack/react-query": "catalog:",
+    "i18next": "catalog:",
+    "lucide-react": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-i18next": "catalog:",
+    "react-router-dom": "catalog:",
+    "sonner": "catalog:",
+    "tailwindcss": "catalog:",
+    "@tailwindcss/vite": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
+    "jsdom": "^29.0.1",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vitest": "^4.1.2"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  }
+}

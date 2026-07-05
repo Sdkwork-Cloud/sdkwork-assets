@@ -1,0 +1,35 @@
+{
+  "component": {
+    "domain": "content",
+    "capability": "assets",
+    "description": "SDKWork unified asset management platform — shared contracts, ingestion orchestration, and consumer surfaces over sdkwork-drive.",
+    "surfaces": {
+      "platform": {
+        "packages": [
+          "packages/sdkwork-assets-core"
+        ],
+        "crates": [
+          "crates/sdkwork-assets-contract",
+          "crates/sdkwork-assets-ingestion",
+          "crates/sdkwork-assets-ingestion-drive",
+          "crates/sdkwork-assets-bridge-image"
+        ]
+      },
+      "client": {
+        "apps": [
+          "apps/sdkwork-assets-pc"
+        ]
+      }
+    },
+    "authorities": {
+      "globalAssetsApi": "sdkwork-drive-app-api",
+      "aiProviderRouting": "clawrouter-open-sdk",
+      "generationRecords": "sdkwork-generations-app-api"
+    },
+    "forbiddenOwnership": [
+      "platform-http-app-api",
+      "relational-database",
+      "object-storage-lifecycle"
+    ]
+  }
+}

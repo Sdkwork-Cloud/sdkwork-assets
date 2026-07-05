@@ -1,0 +1,13 @@
+[package]
+name = "sdkwork-assets-ingestion-drive"
+version.workspace = true
+edition.workspace = true
+description = "Drive uploader execution adapter for sdkwork-assets-ingestion import plans."
+
+[dependencies]
+sdkwork-assets-ingestion = { path = "../sdkwork-assets-ingestion" }
+sdkwork-drive-workspace-service = { workspace = true }
+thiserror.workspace = true
+
+[dev-dependencies]
+sdkwork-assets-contract = { path = "../sdkwork-assets-contract" }

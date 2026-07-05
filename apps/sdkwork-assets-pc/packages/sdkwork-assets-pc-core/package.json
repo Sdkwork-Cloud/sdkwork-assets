@@ -1,0 +1,54 @@
+{
+  "name": "@sdkwork/assets-pc-core",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./src/index.ts"
+    },
+    "./sdk": {
+      "import": "./src/sdk/index.ts",
+      "types": "./src/sdk/index.ts"
+    },
+    "./modules": {
+      "import": "./src/modules/index.ts",
+      "types": "./src/modules/index.ts"
+    },
+    "./host": {
+      "import": "./src/host/index.ts",
+      "types": "./src/host/index.ts"
+    },
+    "./session": {
+      "import": "./src/session/index.ts",
+      "types": "./src/session/index.ts"
+    },
+    "./composition": {
+      "import": "./src/composition/index.ts",
+      "types": "./src/composition/index.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json --noEmit",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@sdkwork/assets-pc-commons": "workspace:*",
+    "@sdkwork/auth-runtime-pc-react": "workspace:*",
+    "@sdkwork/drive-app-sdk": "workspace:*",
+    "@sdkwork/iam-app-sdk": "workspace:*",
+    "@sdkwork/iam-contracts": "workspace:*",
+    "@sdkwork/sdk-common": "workspace:*",
+    "@sdkwork/utils": "workspace:*",
+    "react": "catalog:"
+  },
+  "devDependencies": {
+    "@types/react": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "^4.1.2"
+  }
+}

@@ -1,0 +1,89 @@
+name: Package Application
+
+on:
+  push:
+    tags:
+      - sdkwork-assets-release-*
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag or source ref to package.
+        required: true
+        default: sdkwork-assets-release-0.1.0
+      package_version:
+        description: Package version used in artifact names and manifests.
+        required: false
+        default: ''
+      platform:
+        description: Platform filter.
+        required: true
+        default: all
+        type: choice
+        options:
+          - all
+          - web
+      architecture:
+        description: CPU architecture filter.
+        required: true
+        default: all
+        type: choice
+        options:
+          - all
+          - universal
+      profile:
+        description: Runtime profile filter.
+        required: true
+        default: all
+        type: choice
+        options:
+          - all
+          - browser
+      format:
+        description: Package format filter.
+        required: true
+        default: all
+        type: choice
+        options:
+          - all
+          - zip
+      deploy:
+        description: Run configured deployment environments after packaging.
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+  actions: read
+  id-token: write
+  attestations: write
+  artifact-metadata: write
+
+jobs:
+  package:
+    uses: Sdkwork-Cloud/sdkwork-github-workflow/.github/workflows/sdkwork-package.yml@b0829529b9277a3da32b90c2d36ff34ff09fa832
+    with:
+      config_path: sdkwork.workflow.json
+      tag: ${{ github.event.inputs.tag || github.ref_name }}
+      package_version: ${{ github.event.inputs.package_version || '' }}
+      platform: ${{ github.event.inputs.platform || 'all' }}
+      architecture: ${{ github.event.inputs.architecture || 'all' }}
+      profile: ${{ github.event.inputs.profile || 'all' }}
+      format: ${{ github.event.inputs.format || 'all' }}
+      publish_release: true
+      upload_artifact: true
+      deploy: ${{ github.event.inputs.deploy == 'true' || github.event_name == 'release' }}
+      retention_days: 30
+      framework_ref: b0829529b9277a3da32b90c2d36ff34ff09fa832
+      dependency_refs_json: >-
+        {
+          "SDKWORK_APP_TOPOLOGY_REF": "${{ vars.SDKWORK_APP_TOPOLOGY_REF }}",
+          "SDKWORK_APPBASE_REF": "${{ vars.SDKWORK_APPBASE_REF }}",
+          "SDKWORK_CORE_REF": "${{ vars.SDKWORK_CORE_REF }}",
+          "SDKWORK_UTILS_REF": "${{ vars.SDKWORK_UTILS_REF }}",
+          "SDKWORK_UI_REF": "${{ vars.SDKWORK_UI_REF }}",
+          "SDKWORK_DRIVE_REF": "${{ vars.SDKWORK_DRIVE_REF }}",
+          "SDKWORK_IAM_REF": "${{ vars.SDKWORK_IAM_REF }}",
+          "SDKWORK_SDK_COMMONS_REF": "${{ vars.SDKWORK_SDK_COMMONS_REF }}"
+        }
+    secrets: inherit

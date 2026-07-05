@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 3,
+  "kind": "sdkwork.app",
+  "app": {
+    "key": "sdkwork-assets",
+    "name": "SDKWork Assets",
+    "displayName": "SDKWork Assets",
+    "description": "SDKWork global asset catalog browser and Drive-backed upload client.",
+    "vendor": "SDKWork",
+    "officialWebsiteUrl": "https://sdkwork.com/apps/sdkwork-assets",
+    "supportUrl": "https://sdkwork.com/support",
+    "privacyPolicyUrl": "https://sdkwork.com/privacy",
+    "termsOfServiceUrl": "https://sdkwork.com/terms",
+    "iconUrl": "https://cdn.sdkwork.com/apps/sdkwork-assets/assets/icon-1024.png",
+    "appType": "APP_HTML",
+    "versionSource": "package.json",
+    "identifiers": {
+      "packageName": null,
+      "bundleId": null,
+      "desktopAppId": "com.sdkwork.assets.desktop",
+      "containerImage": "registry.sdkwork.com/apps/sdkwork-assets"
+    }
+  },
+  "backend": {
+    "profileKey": "backend-root-admin",
+    "ownerMode": "tenant",
+    "grantMode": "current",
+    "platform": "WEB",
+    "appId": "sdkwork-assets-pc",
+    "tenantId": "100001",
+    "organizationId": "0",
+    "accessTokenPermissionScope": ["iam:self", "drive:*"]
+  },
+  "runtime": {
+    "family": "web",
+    "framework": "web",
+    "runtimes": ["WEB", "BROWSER"],
+    "deliveryModes": ["WEB_URL"],
+    "defaultPlatform": "WEB",
+    "defaultArchitecture": "x64",
+    "supportedDeploymentProfiles": ["standalone", "cloud"],
+    "defaultDeploymentProfile": "cloud"
+  },
+  "sdkDependencies": [
+    {
+      "sdkFamily": "sdkwork-iam-app-sdk",
+      "repository": "sdkwork-iam",
+      "surfaces": ["app-api"]
+    },
+    {
+      "sdkFamily": "sdkwork-drive-app-sdk",
+      "repository": "sdkwork-drive",
+      "surfaces": ["app-api"]
+    }
+  ],
+  "media": {
+    "icons": {
+      "primary": {
+        "id": "sdkwork-assets-primary-icon",
+        "type": "ICON",
+        "purpose": "PRIMARY",
+        "url": "https://cdn.sdkwork.com/apps/sdkwork-assets/assets/icon-1024.png",
+        "platform": "APP",
+        "locale": "en-US",
+        "width": 1024,
+        "height": 1024,
+        "format": "PNG",
+        "enabled": true
+      }
+    }
+  }
+}

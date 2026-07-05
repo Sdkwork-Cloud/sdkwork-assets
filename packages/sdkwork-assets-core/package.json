@@ -1,0 +1,30 @@
+{
+  "name": "@sdkwork/assets-core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Canonical unified asset management contracts and Drive-backed ingestion helpers for SDKWork.",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./media-resource": "./src/mediaResource.ts",
+    "./artifact-batch": "./src/artifactBatch.ts",
+    "./ingestion": "./src/ingestion.ts",
+    "./asset-mapping": "./src/assetMapping.ts",
+    "./drive-layout": "./src/driveLayout.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "node --import tsx --test src/ingestion.test.ts src/assetMapping.test.ts"
+  },
+  "dependencies": {
+    "@sdkwork/utils": "workspace:*"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0",
+    "typescript": "catalog:"
+  }
+}

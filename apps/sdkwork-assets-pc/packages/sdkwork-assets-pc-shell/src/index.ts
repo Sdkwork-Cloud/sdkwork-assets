@@ -1,0 +1,1 @@
+export { AssetsAppShell } from './AssetsAppShell';

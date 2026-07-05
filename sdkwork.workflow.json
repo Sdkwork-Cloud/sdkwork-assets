@@ -1,0 +1,135 @@
+{
+  "$schema": "../sdkwork-github-workflow/schemas/sdkwork-workflow.schema.json",
+  "schemaVersion": "2026-06-06.sdkwork.workflow.v1",
+  "app": {
+    "id": "sdkwork-assets",
+    "name": "SDKWork Assets",
+    "repository": "Sdkwork-Cloud/sdkwork-assets",
+    "sourcePath": ".",
+    "configPath": "apps/sdkwork-assets-pc/sdkwork.app.config.json"
+  },
+  "release": {
+    "artifactPrefix": "sdkwork-assets",
+    "defaultVersion": "0.1.0",
+    "changelog": {
+      "source": "auto",
+      "maxCommitSubjects": 50
+    }
+  },
+  "dependencies": [
+    {
+      "id": "sdkwork-app-topology",
+      "repository": "Sdkwork-Cloud/sdkwork-app-topology",
+      "ref": "main",
+      "refInput": "SDKWORK_APP_TOPOLOGY_REF",
+      "tokenSecret": "SDKWORK_RELEASE_TOKEN"
+    },
+    {
+      "id": "sdkwork-appbase",
+      "repository": "Sdkwork-Cloud/sdkwork-appbase",
+      "ref": "main",
+      "refInput": "SDKWORK_APPBASE_REF",
+      "tokenSecret": "SDKWORK_RELEASE_TOKEN"
+    },
+    {
+      "id": "sdkwork-core",
+      "repository": "Sdkwork-Cloud/sdkwork-core",
+      "ref": "main",
+      "refInput": "SDKWORK_CORE_REF",
+      "tokenSecret": "SDKWORK_RELEASE_TOKEN"
+    },
+    {
+      "id": "sdkwork-utils",
+      "repository": "Sdkwork-Cloud/sdkwork-utils",
+      "ref": "main",
+      "refInput": "SDKWORK_UTILS_REF",
+      "tokenSecret": "SDKWORK_RELEASE_TOKEN"
+    },
+    {
+      "id": "sdkwork-ui",
+      "repository": "Sdkwork-Cloud/sdkwork-ui",
+      "ref": "main",
+      "refInput": "SDKWORK_UI_REF",
+      "tokenSecret": "SDKWORK_RELEASE_TOKEN"
+    },
+    {
+      "id": "sdkwork-drive",
+      "repository": "Sdkwork-Cloud/sdkwork-drive",
+      "ref": "main",
+      "refInput": "SDKWORK_DRIVE_REF",
+      "tokenSecret": "SDKWORK_RELEASE_TOKEN"
+    },
+    {
+      "id": "sdkwork-iam",
+      "repository": "Sdkwork-Cloud/sdkwork-iam",
+      "ref": "main",
+      "refInput": "SDKWORK_IAM_REF",
+      "tokenSecret": "SDKWORK_RELEASE_TOKEN"
+    },
+    {
+      "id": "sdkwork-sdk-commons",
+      "repository": "Sdkwork-Cloud/sdkwork-sdk-commons",
+      "ref": "main",
+      "refInput": "SDKWORK_SDK_COMMONS_REF",
+      "tokenSecret": "SDKWORK_RELEASE_TOKEN"
+    }
+  ],
+  "toolchains": {
+    "node": "22",
+    "pnpm": "10.33.0"
+  },
+  "lifecycle": {
+    "install": [
+      {
+        "name": "Install workspace dependencies",
+        "shell": "pwsh",
+        "run": "pnpm install --no-frozen-lockfile"
+      }
+    ],
+    "build": [
+      {
+        "name": "Verify SDKWork Assets standards",
+        "shell": "pwsh",
+        "run": "pnpm verify"
+      }
+    ],
+    "package": [
+      {
+        "name": "Build SDKWork Assets browser bundle",
+        "shell": "pwsh",
+        "run": "pnpm build"
+      }
+    ],
+    "validate": [
+      {
+        "name": "Validate repository baseline",
+        "shell": "pwsh",
+        "run": "node ../sdkwork-specs/tools/audit-repository-baseline.mjs --root ."
+      }
+    ]
+  },
+  "targets": [
+    {
+      "id": "web-universal-cloud-browser-zip",
+      "profile": "browser",
+      "platform": "web",
+      "architecture": "universal",
+      "formats": ["zip"],
+      "runner": "ubuntu-latest",
+      "outputGlobs": ["apps/sdkwork-assets-pc/dist/**"],
+      "deploymentProfile": "cloud",
+      "runtimeTarget": "browser"
+    },
+    {
+      "id": "web-universal-standalone-browser-zip",
+      "profile": "browser",
+      "platform": "web",
+      "architecture": "universal",
+      "formats": ["zip"],
+      "runner": "ubuntu-latest",
+      "outputGlobs": ["apps/sdkwork-assets-pc/dist/**"],
+      "deploymentProfile": "standalone",
+      "runtimeTarget": "browser"
+    }
+  ]
+}

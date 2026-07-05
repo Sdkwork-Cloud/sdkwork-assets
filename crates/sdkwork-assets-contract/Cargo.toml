@@ -1,0 +1,10 @@
+[package]
+name = "sdkwork-assets-contract"
+version.workspace = true
+edition.workspace = true
+description = "Canonical unified asset management contracts (MediaResource, artifact batches, provenance)."
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true

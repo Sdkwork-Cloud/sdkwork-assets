@@ -1,0 +1,7 @@
+{
+  "component": {
+    "domain": "content",
+    "capability": "assets-ingestion",
+    "description": "Drive-backed ingestion orchestration for multi-artifact AI generation outcomes."
+  }
+}

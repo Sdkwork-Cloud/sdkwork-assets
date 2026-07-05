@@ -1,0 +1,7 @@
+{
+  "component": {
+    "domain": "content",
+    "capability": "assets-core",
+    "description": "TypeScript unified asset management contracts aligned with MEDIA_RESOURCE_SPEC."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "@sdkwork/assets-root",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "packageManager": "pnpm@10.33.0",
+  "dependencies": {
+    "@sdkwork/app-topology": "workspace:*"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @sdkwork/assets-pc-react dev",
+    "build": "pnpm --filter @sdkwork/assets-pc-react build",
+    "typecheck": "pnpm --filter @sdkwork/assets-pc-react typecheck",
+    "test": "pnpm --filter @sdkwork/assets-pc-react test",
+    "check": "pnpm topology:verify && pnpm check:app-composition && cargo test --workspace && pnpm --filter @sdkwork/assets-core test && node --test tests/repository-structure.test.mjs tests/architecture-alignment.test.mjs tests/platform-contracts.test.mjs tests/cross-repo-media-alignment.test.mjs tests/drive-openapi-alignment.test.mjs",
+    "check:app-composition": "node ../sdkwork-specs/tools/verify-repo.mjs --root .",
+    "verify": "pnpm check && pnpm --filter @sdkwork/assets-pc-react verify",
+    "clean": "pnpm --filter @sdkwork/assets-pc-react clean",
+    "topology:validate": "node ../sdkwork-app-topology/scripts/sdkwork-topology.mjs validate --root . --spec specs/topology.spec.json",
+    "topology:test": "node --test tests/repository-structure.test.mjs tests/architecture-alignment.test.mjs",
+    "topology:verify": "pnpm topology:validate && pnpm topology:test"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@sdkwork/iam-app-sdk"
+      ]
+    }
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  }
+}

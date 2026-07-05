@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 2,
+  "kind": "sdkwork.app.topology",
+  "appId": "sdkwork-assets",
+  "archetype": "application-http-gateway",
+  "profileRoot": "configs/topology",
+  "profilePattern": "{deploymentProfile}.{serviceLayout}.{environment}.env",
+  "vocabulary": {
+    "serviceLayout": {
+      "allowed": ["split-services"]
+    },
+    "environment": {
+      "allowed": ["development", "production"]
+    },
+    "connectivityPlane": {
+      "allowed": ["application", "platform"]
+    },
+    "deploymentProfile": {
+      "allowed": ["standalone", "cloud"]
+    }
+  },
+  "defaults": {
+    "developmentProfileId": "standalone.split-services.development",
+    "productionProfileId": "cloud.split-services.production"
+  },
+  "profileFiles": {
+    "standalone.split-services.development": "configs/topology/standalone.split-services.development.env",
+    "cloud.split-services.development": "configs/topology/cloud.split-services.development.env",
+    "cloud.split-services.production": "configs/topology/cloud.split-services.production.env"
+  },
+  "envKeys": {
+    "deploymentProfile": "SDKWORK_ASSETS_DEPLOYMENT_PROFILE",
+    "clientDeploymentProfile": "VITE_SDKWORK_ASSETS_DEPLOYMENT_PROFILE",
+    "apiGatewayBaseUrl": "SDKWORK_ASSETS_PLATFORM_API_GATEWAY_HTTP_URL",
+    "clientApiGatewayBaseUrl": "VITE_SDKWORK_ASSETS_PLATFORM_API_GATEWAY_HTTP_URL",
+    "clientApplicationPublicHttpUrl": "VITE_SDKWORK_ASSETS_APPLICATION_PUBLIC_HTTP_URL"
+  },
+  "surfaces": {
+    "application.public-ingress": {
+      "connectivityPlane": "application",
+      "protocols": ["http"],
+      "bindEnv": "SDKWORK_ASSETS_APPLICATION_PUBLIC_INGRESS_BIND",
+      "httpUrlEnv": "SDKWORK_ASSETS_APPLICATION_PUBLIC_HTTP_URL",
+      "clientHttpEnv": "VITE_SDKWORK_ASSETS_APPLICATION_PUBLIC_HTTP_URL"
+    },
+    "platform.api-gateway": {
+      "connectivityPlane": "platform",
+      "protocols": ["http"],
+      "owner": "sdkwork-api-cloud-gateway",
+      "bindEnv": "SDKWORK_API_CLOUD_GATEWAY_BIND",
+      "httpUrlEnv": "SDKWORK_ASSETS_PLATFORM_API_GATEWAY_HTTP_URL",
+      "clientHttpEnv": "VITE_SDKWORK_ASSETS_PLATFORM_API_GATEWAY_HTTP_URL"
+    }
+  },
+  "orchestration": {
+    "profiles": {
+      "standalone.split-services.development": {
+        "processes": [
+          {
+            "id": "web-renderer",
+            "package": "sdkwork-assets-pc-react",
+            "script": "dev",
+            "required": true
+          }
+        ],
+        "healthSurfaces": []
+      },
+      "cloud.split-services.development": {
+        "processes": [
+          {
+            "id": "web-renderer",
+            "package": "sdkwork-assets-pc-react",
+            "script": "dev",
+            "required": true
+          }
+        ],
+        "healthSurfaces": ["platform.api-gateway"]
+      },
+      "cloud.split-services.production": {
+        "processes": [
+          {
+            "id": "web-renderer",
+            "package": "sdkwork-assets-pc-react",
+            "script": "build",
+            "required": true
+          }
+        ],
+        "healthSurfaces": ["platform.api-gateway"]
+      }
+    }
+  },
+  "packaging": {
+    "targets": [
+      {
+        "id": "web-browser-static",
+        "profile": "cloud.split-services.production",
+        "platform": "web",
+        "architecture": "any",
+        "formats": ["static"]
+      }
+    ]
+  }
+}
