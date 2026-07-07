@@ -66,6 +66,9 @@ export default defineConfig(({ mode }) => {
   };
 
   return {
+    define: {
+      'process.env.SDKWORK_ACCESS_TOKEN': JSON.stringify(env.SDKWORK_ACCESS_TOKEN ?? ''),
+    },
     envDir,
     plugins: [react(), tailwindcss(), browserSecurityHeadersPlugin(mode === 'development')],
     define: {
