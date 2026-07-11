@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "kind": "sdkwork.component.spec",
+  "component": {
+    "name": "sdkwork-assets-common",
+    "displayName": "SDKWork Assets Common",
+    "version": "0.1.0",
+    "type": "app",
+    "root": "sdkwork-assets/apps/sdkwork-assets-common",
+    "domain": "content",
+    "capability": "assets-common",
+    "surface": "common",
+    "languages": ["typescript"],
+    "generated": false,
+    "manifests": ["packages/sdkwork-assets-core/package.json"]
+  },
+  "canonicalSpecs": [
+    {
+      "file": "SDKWORK_WORKSPACE_SPEC.md",
+      "path": "../../../sdkwork-specs/SDKWORK_WORKSPACE_SPEC.md",
+      "purpose": "Common application-root package layout."
+    },
+    {
+      "file": "COMPONENT_SPEC.md",
+      "path": "../../../sdkwork-specs/COMPONENT_SPEC.md",
+      "purpose": "Local component contract shape."
+    },
+    {
+      "file": "TYPESCRIPT_CODE_SPEC.md",
+      "path": "../../../sdkwork-specs/TYPESCRIPT_CODE_SPEC.md",
+      "purpose": "TypeScript package boundaries."
+    }
+  ],
+  "contracts": {
+    "layerRole": "frontend-core",
+    "publicExports": ["packages/sdkwork-assets-core"],
+    "providedPorts": [
+      {
+        "name": "assetsCoreContracts",
+        "export": "packages/sdkwork-assets-core"
+      }
+    ],
+    "requiredPorts": [],
+    "runtimeEntrypoints": [
+      "packages/sdkwork-assets-core/package.json#scripts.typecheck",
+      "packages/sdkwork-assets-core/package.json#scripts.test"
+    ],
+    "routeManifest": null,
+    "sdkClients": [],
+    "sdkDependencies": [],
+    "permissionComposition": {},
+    "dependencyApiExports": [],
+    "dependencyApiSurfaces": [],
+    "events": [],
+    "configKeys": []
+  },
+  "verification": {
+    "commands": [
+      "pnpm --filter @sdkwork/assets-core typecheck",
+      "pnpm --filter @sdkwork/assets-core test"
+    ]
+  }
+}

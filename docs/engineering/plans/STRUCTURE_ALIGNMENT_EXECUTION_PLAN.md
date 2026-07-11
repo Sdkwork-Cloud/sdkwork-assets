@@ -22,7 +22,7 @@ Last reviewed: 2026-07-05
 
 ```text
 sdkwork-assets/
-  packages/sdkwork-assets-core/     # TS contracts + ingestion + catalog mapping
+  apps/sdkwork-assets-common/packages/sdkwork-assets-core/  # TS contracts + ingestion + catalog mapping
   crates/sdkwork-assets-contract/   # Rust canonical types
   crates/sdkwork-assets-ingestion/  # Multi-artifact import planning
   crates/sdkwork-assets-ingestion-drive/

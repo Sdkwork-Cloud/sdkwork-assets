@@ -22,7 +22,7 @@ Assets **does not** own object storage, relational metadata, or the global asset
                              │ @sdkwork/assets-core, @sdkwork/drive-app-sdk
 ┌────────────────────────────▼────────────────────────────────────┐
 │ sdkwork-assets (THIS REPO)                                       │
-│  packages/sdkwork-assets-core          TS contracts + planning   │
+│  apps/sdkwork-assets-common/packages/sdkwork-assets-core          │
 │  crates/sdkwork-assets-contract        Rust canonical types      │
 │  crates/sdkwork-assets-ingestion       Drive import plan         │
 │  crates/sdkwork-assets-ingestion-drive Drive uploader execution  │
@@ -80,7 +80,7 @@ ProviderAsset (transient URL)
 
 Full schema per `MEDIA_RESOURCE_SPEC §3`, implemented in:
 
-- TypeScript: `packages/sdkwork-assets-core/src/mediaResource.ts`
+- TypeScript: `apps/sdkwork-assets-common/packages/sdkwork-assets-core/src/mediaResource.ts`
 - Rust: `crates/sdkwork-assets-contract/src/media_resource.rs`
 
 Required fields: `kind`, `source`. Drive-backed persisted resources use `source = drive`, `uri = drive://spaces/{spaceId}/nodes/{nodeId}`, `id = {nodeId}`.

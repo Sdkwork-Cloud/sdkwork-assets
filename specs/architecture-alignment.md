@@ -15,7 +15,7 @@ Last reviewed: 2026-07-05
 | Drive global assets API | Aligned | `@sdkwork/drive-app-sdk` via TokenManager-bound client |
 | Drive list pagination | Aligned | Shared `useAssetsListInfiniteQuery` + `AssetPage.nextCursor` |
 | Drive list filters | Aligned | Server-side `kind` / `sourceType` via `buildListAssetsQuery` |
-| MediaResource / catalog mapping SSOT | Aligned | `packages/sdkwork-assets-core` (`MEDIA_RESOURCE_SPEC` + `asset-mapping`) |
+| MediaResource / catalog mapping SSOT | Aligned | `apps/sdkwork-assets-common/packages/sdkwork-assets-core` (`MEDIA_RESOURCE_SPEC` + `asset-mapping`) |
 | Cross-repo MediaResource consumers | Aligned | `@sdkwork/image-contracts`, `@sdkwork/generations-pc-workspace` re-export/consume assets-core |
 | Drive OpenAPI MediaResource | Aligned | `drive-app-api.openapi.json` kind/source/durationSeconds per spec |
 | Archive/restore UI consistency | Aligned | `patchAssetLifecycleInCache` compensates Drive list lifecycle gap |

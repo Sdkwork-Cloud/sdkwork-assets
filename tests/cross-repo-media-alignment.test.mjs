@@ -49,5 +49,5 @@ test('drive OpenAPI MediaResource aligns with MEDIA_RESOURCE_SPEC kind enum', ()
 
 test('image pnpm workspace links canonical assets-core package', () => {
   const workspace = readUtf8(path.join(workspaceRoot, 'sdkwork-image/pnpm-workspace.yaml'));
-  assert.match(workspace, /sdkwork-assets\/packages\/sdkwork-assets-core/);
+  assert.match(workspace, /sdkwork-assets\/apps\/sdkwork-assets-common\/packages\/sdkwork-assets-core/);
 });

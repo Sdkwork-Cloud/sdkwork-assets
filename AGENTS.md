@@ -23,7 +23,7 @@ Read `apps/sdkwork-assets-pc/sdkwork.app.config.json` before changing applicatio
 ## Local Dictionary Structure
 
 - `AGENTS.md`: local agent entrypoint.
-- `packages/sdkwork-assets-core/`: unified asset contracts + ingestion planning (TypeScript).
+- `apps/sdkwork-assets-common/packages/sdkwork-assets-core/`: unified asset contracts + ingestion planning (TypeScript).
 - `crates/sdkwork-assets-contract/`, `crates/sdkwork-assets-ingestion/`: Rust platform libraries.
 - `apps/sdkwork-assets-pc/`: primary PC browser application root (`APP_PC_ARCHITECTURE_SPEC.md`).
 - `specs/`: repository contracts (`topology.spec.json`, `component.spec.json`, governance).

@@ -7,12 +7,22 @@
     "root": "sdkwork-assets/apps/sdkwork-assets-pc/packages/sdkwork-assets-pc-core",
     "domain": "content",
     "capability": "assets",
-    "languages": ["typescript", "react"],
+    "languages": [
+      "typescript",
+      "react"
+    ],
     "generated": false,
     "private": true
   },
   "contracts": {
-    "publicExports": [".", "./sdk", "./modules", "./host", "./session", "./composition"],
+    "publicExports": [
+      ".",
+      "./sdk",
+      "./modules",
+      "./host",
+      "./session",
+      "./composition"
+    ],
     "sdkDependencies": [
       {
         "workspace": "@sdkwork/drive-app-sdk",
@@ -34,6 +44,38 @@
         "surface": "app-api",
         "credentialMode": "authenticated-app-api"
       }
-    ]
+    ],
+    "permissionComposition": {
+      "inheritanceMode": "module-catalog-with-overrides",
+      "moduleCatalogRefs": [
+        {
+          "moduleId": "drive",
+          "manifestRef": "../../../../../../sdkwork-iam/iam/modules/drive/iam.module.manifest.json",
+          "inheritPermissions": true,
+          "inheritRoles": true
+        },
+        {
+          "moduleId": "iam-kernel",
+          "manifestRef": "../../../../../../sdkwork-iam/iam/modules/iam-kernel/iam.module.manifest.json",
+          "inheritPermissions": true,
+          "inheritRoles": false
+        }
+      ],
+      "bootstrapAccessTokenScope": {
+        "inheritFrom": "sdkwork.app.config.json#backend.accessTokenPermissionScope",
+        "supplement": [],
+        "overrideReplace": false
+      },
+      "routePermissionHints": {
+        "inheritFromOpenApi": true,
+        "inheritFromModuleManifests": true,
+        "overrides": []
+      },
+      "consumerPolicy": {
+        "forbidLocalPermissionCatalogForDependencyDomains": true,
+        "allowExplicitOverridesOnly": true,
+        "allowFrontendHintsWithoutServerDuplication": true
+      }
+    }
   }
 }

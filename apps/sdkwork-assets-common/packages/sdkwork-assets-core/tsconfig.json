@@ -6,7 +6,9 @@
     "strict": true,
     "skipLibCheck": true,
     "noEmit": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "allowImportingTsExtensions": true,
+    "types": ["node"]
   },
   "include": ["src/**/*.ts", "vitest.config.ts"]
 }

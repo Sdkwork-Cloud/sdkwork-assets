@@ -142,5 +142,5 @@ export function normalizeMediaResourceSnapshot(value: unknown): MediaResource | 
   if (typeof kind !== 'string' || isBlank(kind) || typeof source !== 'string' || isBlank(source)) {
     return undefined;
   }
-  return record as MediaResource;
+  return record as unknown as MediaResource;
 }

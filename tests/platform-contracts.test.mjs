@@ -16,7 +16,7 @@ test('platform contract crates exist', () => {
   readUtf8('crates/sdkwork-assets-ingestion/Cargo.toml');
   readUtf8('crates/sdkwork-assets-ingestion-drive/Cargo.toml');
   readUtf8('crates/sdkwork-assets-bridge-image/Cargo.toml');
-  readUtf8('packages/sdkwork-assets-core/package.json');
+  readUtf8('apps/sdkwork-assets-common/packages/sdkwork-assets-core/package.json');
   readUtf8('docs/architecture/tech/TECH-UNIFIED-ASSETS-PLATFORM.md');
 
   const component = JSON.parse(readUtf8('specs/component.spec.json'));
@@ -32,7 +32,7 @@ test('ingestion documents clawrouter integration boundary', () => {
 });
 
 test('assets-core exports canonical MediaResource fields', () => {
-  const source = readUtf8('packages/sdkwork-assets-core/src/mediaResource.ts');
+  const source = readUtf8('apps/sdkwork-assets-common/packages/sdkwork-assets-core/src/mediaResource.ts');
   assert.match(source, /kind: MediaKind/);
   assert.match(source, /source: MediaSource/);
   assert.match(source, /ai\?: MediaAiProvenance/);
@@ -41,7 +41,7 @@ test('assets-core exports canonical MediaResource fields', () => {
 });
 
 test('assets-core provides catalog mapping helpers', () => {
-  const source = readUtf8('packages/sdkwork-assets-core/src/assetMapping.ts');
+  const source = readUtf8('apps/sdkwork-assets-common/packages/sdkwork-assets-core/src/assetMapping.ts');
   assert.match(source, /mediaKindToAssetKind/);
   assert.match(source, /assetItemToMediaResource/);
 });

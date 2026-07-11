@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "kind": "sdkwork.component.spec",
+  "component": {
+    "name": "@sdkwork/assets-core",
+    "displayName": "SDKWork Assets Core",
+    "version": "0.1.0",
+    "type": "node-package",
+    "root": "sdkwork-assets/apps/sdkwork-assets-common/packages/sdkwork-assets-core",
+    "domain": "content",
+    "capability": "assets-core",
+    "surface": "common",
+    "languages": ["typescript"],
+    "generated": false,
+    "manifests": ["package.json"]
+  },
+  "canonicalSpecs": [
+    {
+      "file": "COMPONENT_SPEC.md",
+      "path": "../../../../../sdkwork-specs/COMPONENT_SPEC.md",
+      "purpose": "Package-local component contract."
+    },
+    {
+      "file": "CODE_STYLE_SPEC.md",
+      "path": "../../../../../sdkwork-specs/CODE_STYLE_SPEC.md",
+      "purpose": "Shared code style and package boundaries."
+    },
+    {
+      "file": "TYPESCRIPT_CODE_SPEC.md",
+      "path": "../../../../../sdkwork-specs/TYPESCRIPT_CODE_SPEC.md",
+      "purpose": "TypeScript package shape."
+    },
+    {
+      "file": "MEDIA_RESOURCE_SPEC.md",
+      "path": "../../../../../sdkwork-specs/MEDIA_RESOURCE_SPEC.md",
+      "purpose": "Canonical media resource model."
+    }
+  ],
+  "contracts": {
+    "layerRole": "frontend-core",
+    "publicExports": [".", "./media-resource", "./artifact-batch", "./ingestion", "./asset-mapping", "./drive-layout"],
+    "providedPorts": [
+      {
+        "name": "assetsCoreContracts",
+        "export": "."
+      }
+    ],
+    "requiredPorts": [],
+    "runtimeEntrypoints": ["package.json#scripts.typecheck", "package.json#scripts.test"],
+    "routeManifest": null,
+    "sdkClients": [],
+    "sdkDependencies": [],
+    "permissionComposition": {},
+    "dependencyApiExports": [],
+    "dependencyApiSurfaces": [],
+    "events": [],
+    "configKeys": []
+  },
+  "verification": {
+    "commands": ["pnpm --filter @sdkwork/assets-core typecheck", "pnpm --filter @sdkwork/assets-core test"]
+  }
+}

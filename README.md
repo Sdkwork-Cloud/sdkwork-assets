@@ -21,7 +21,7 @@ Modality backend services **MUST** invoke provider capabilities through **`clawr
 
 | Directory | Purpose |
 | --- | --- |
-| [`packages/sdkwork-assets-core/`](./packages/sdkwork-assets-core/) | TypeScript contracts + ingestion planning (`MediaResource`, `MediaArtifactBatch`) |
+| [`apps/sdkwork-assets-common/packages/sdkwork-assets-core/`](./apps/sdkwork-assets-common/packages/sdkwork-assets-core/) | TypeScript contracts + ingestion planning (`MediaResource`, `MediaArtifactBatch`) |
 | [`crates/sdkwork-assets-contract/`](./crates/sdkwork-assets-contract/) | Rust canonical contracts (`MEDIA_RESOURCE_SPEC`) |
 | [`crates/sdkwork-assets-ingestion/`](./crates/sdkwork-assets-ingestion/) | Rust multi-artifact Drive import planning + ClawRouter integration boundary |
 | [`crates/sdkwork-assets-ingestion-drive/`](./crates/sdkwork-assets-ingestion-drive/) | Rust Drive uploader execution adapter |

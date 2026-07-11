@@ -30,7 +30,7 @@ See [TECH-UNIFIED-ASSETS-PLATFORM.md](./TECH-UNIFIED-ASSETS-PLATFORM.md) for the
 ## Package architecture
 
 ```text
-packages/sdkwork-assets-core/           Canonical TS contracts + ingestion + catalog mapping
+apps/sdkwork-assets-common/packages/sdkwork-assets-core/  Canonical TS contracts + ingestion + catalog mapping
 crates/sdkwork-assets-contract/          Rust MediaResource + MediaArtifactBatch
 crates/sdkwork-assets-ingestion/         Drive import planning
 crates/sdkwork-assets-ingestion-drive/  Drive uploader execution adapter

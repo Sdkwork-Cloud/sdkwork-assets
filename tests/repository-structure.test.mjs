@@ -36,7 +36,7 @@ test('repository root documents unified asset platform layout', () => {
   readUtf8('specs/component.spec.json');
   readUtf8('sdkwork.workflow.json');
   readUtf8('.github/workflows/package.yml');
-  readUtf8('packages/sdkwork-assets-core/package.json');
+  readUtf8('apps/sdkwork-assets-common/packages/sdkwork-assets-core/package.json');
 });
 
 test('workspace links drive app sdk and utils', () => {
