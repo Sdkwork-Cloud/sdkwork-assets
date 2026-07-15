@@ -45,12 +45,19 @@ function hasTokens(snapshot: AssetsSessionSnapshot): boolean {
 }
 
 function readStorageSnapshot(): AssetsSessionSnapshot {
-  if (typeof sessionStorage === 'undefined') {
+  if (typeof localStorage === 'undefined') {
     return {};
   }
 
   try {
-    const raw = sessionStorage.getItem(SESSION_STORAGE_KEY);
+    const legacyRaw = typeof sessionStorage === 'undefined'
+      ? null
+      : sessionStorage.getItem(SESSION_STORAGE_KEY);
+    const raw = localStorage.getItem(SESSION_STORAGE_KEY) ?? legacyRaw;
+    if (legacyRaw && !localStorage.getItem(SESSION_STORAGE_KEY)) {
+      localStorage.setItem(SESSION_STORAGE_KEY, legacyRaw);
+      sessionStorage.removeItem(SESSION_STORAGE_KEY);
+    }
     if (!raw) {
       return {};
     }
@@ -61,16 +68,18 @@ function readStorageSnapshot(): AssetsSessionSnapshot {
 }
 
 function writeStorageSnapshot(snapshot: AssetsSessionSnapshot): void {
-  if (typeof sessionStorage === 'undefined') {
+  if (typeof localStorage === 'undefined') {
     return;
   }
 
   if (!hasTokens(snapshot)) {
-    sessionStorage.removeItem(SESSION_STORAGE_KEY);
+    localStorage.removeItem(SESSION_STORAGE_KEY);
+    sessionStorage?.removeItem(SESSION_STORAGE_KEY);
     return;
   }
 
-  sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(snapshot));
+  localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(snapshot));
+  sessionStorage?.removeItem(SESSION_STORAGE_KEY);
 }
 
 export class AssetsSessionStore {
