@@ -8,7 +8,7 @@
     "@sdkwork/app-topology": "workspace:*"
   },
   "scripts": {
-    "dev": "pnpm --filter @sdkwork/assets-pc-react dev",
+    "stop": "node ../sdkwork-specs/tools/stop-sdkwork-workspace-processes.mjs --workspace .",    "dev": "pnpm --filter @sdkwork/assets-pc-react dev",
     "build": "pnpm --filter @sdkwork/assets-pc-react build",
     "typecheck": "pnpm --filter @sdkwork/assets-pc-react typecheck",
     "test": "pnpm --filter @sdkwork/assets-pc-react test",
