@@ -1,4 +1,6 @@
-use sdkwork_assets_contract::{AssetCatalogRef, AssetLifecycleState, AssetSourceType, ImportedMediaArtifact};
+use sdkwork_assets_contract::{
+    AssetCatalogRef, AssetLifecycleState, AssetSourceType, ImportedMediaArtifact,
+};
 
 use crate::plan::IngestionError;
 

@@ -36,13 +36,13 @@ Read `apps/sdkwork-assets-pc/sdkwork.app.config.json` before changing applicatio
 - Rust platform crates: `../sdkwork-specs/RUST_CODE_SPEC.md`, `../sdkwork-specs/MEDIA_RESOURCE_SPEC.md`, `../sdkwork-specs/DRIVE_SPEC.md`.
 - Frontend/UI: `../sdkwork-specs/FRONTEND_CODE_SPEC.md`, `../sdkwork-specs/FRONTEND_SPEC.md`, `../sdkwork-specs/APP_PC_ARCHITECTURE_SPEC.md`.
 - Drive integration: `../sdkwork-specs/DRIVE_SPEC.md`, `../sdkwork-specs/APP_SDK_INTEGRATION_SPEC.md`.
-- Modality backend ClawRouter integration: `../sdkwork-specs/API_SPEC.md` §4.5.2 external protocol rules; use `clawrouter-open-sdk` only.
+- Modality backend provider integration: use the canonical generation service, provider SPI, and provider adapter; generated SDK details remain adapter-private.
 
 ## Framework Rules
 
 - All asset catalog and upload operations MUST use `@sdkwork/drive-app-sdk`. No raw HTTP to Drive APIs.
 - Shared TypeScript contracts MUST use `@sdkwork/assets-core`. PC commons re-exports only; do not fork MediaResource shapes.
-- Modality Rust services MUST integrate providers via `clawrouter_open_sdk::SdkworkAiClient`, then normalize to `sdkwork-assets-ingestion` batches.
+- Modality Rust services MUST integrate through canonical provider SPI and adapter packages, then normalize to `sdkwork-assets-ingestion` batches. Raw provider HTTP is forbidden.
 - Shared TypeScript helpers MUST use `@sdkwork/utils`. Do not duplicate utils in local commons.
 - No platform HTTP `*-api` surfaces in this repository without an approved ADR and `sdkwork-web-framework` integration.
 

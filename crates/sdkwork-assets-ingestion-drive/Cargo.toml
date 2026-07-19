@@ -5,9 +5,9 @@ edition.workspace = true
 description = "Drive uploader execution adapter for sdkwork-assets-ingestion import plans."
 
 [dependencies]
-sdkwork-assets-ingestion = { path = "../sdkwork-assets-ingestion" }
+sdkwork-assets-ingestion.workspace = true
 sdkwork-drive-workspace-service = { workspace = true }
 thiserror.workspace = true
 
 [dev-dependencies]
-sdkwork-assets-contract = { path = "../sdkwork-assets-contract" }
+sdkwork-assets-contract.workspace = true

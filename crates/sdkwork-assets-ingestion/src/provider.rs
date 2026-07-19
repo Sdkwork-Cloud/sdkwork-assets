@@ -1,11 +1,11 @@
-//! ClawRouter integration boundary for modality backend services.
+//! Provider adapter boundary for modality backend services.
 //!
-//! Domain services (image, video, music, audio) MUST call provider capabilities through
-//! `clawrouter_open_sdk::SdkworkAiClient` — never raw provider HTTP.
+//! Domain services call provider capabilities through their canonical provider SPI and adapter.
+//! Adapters may use an approved generated SDK, but domain services never call provider HTTP.
 //!
 //! Reference implementations:
-//! - `sdkwork-image/crates/sdkwork-image-claw-router-provider-service`
-//! - `sdkwork-video/crates/sdkwork-video-provider-claw-router-rust`
+//! - `sdkwork-image/crates/sdkwork-image-generation-provider-adapter`
+//! - `sdkwork-video/crates/sdkwork-video-generation-provider-adapter`
 
 use sdkwork_assets_contract::{MediaArtifact, MediaArtifactBatch, MediaKind, ProviderRef};
 
@@ -20,34 +20,39 @@ pub enum ProviderGenerationPhase {
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
-pub struct ClawRouterIntegrationProfile {
-    pub open_sdk_crate: &'static str,
+pub struct ProviderAdapterProfile {
+    pub adapter_id: &'static str,
     pub modality: &'static str,
 }
 
-impl ClawRouterIntegrationProfile {
+impl ProviderAdapterProfile {
     pub const IMAGE: Self = Self {
-        open_sdk_crate: "clawrouter_open_sdk",
+        adapter_id: "sdkwork-image-generation-provider-adapter",
         modality: "image",
     };
 
     pub const VIDEO: Self = Self {
-        open_sdk_crate: "clawrouter_open_sdk",
+        adapter_id: "sdkwork-video-generation-provider-adapter",
         modality: "video",
     };
 
     pub const MUSIC: Self = Self {
-        open_sdk_crate: "clawrouter_open_sdk",
+        adapter_id: "sdkwork-music-generation-provider-adapter",
         modality: "music",
     };
 
-    pub const AUDIO: Self = Self {
-        open_sdk_crate: "clawrouter_open_sdk",
-        modality: "audio",
+    pub const VOICE: Self = Self {
+        adapter_id: "sdkwork-voice-generation-provider-adapter",
+        modality: "voice",
+    };
+
+    pub const SOUND_EFFECT: Self = Self {
+        adapter_id: "sdkwork-audio-sound-effect-provider-adapter",
+        modality: "sound-effect",
     };
 }
 
-/// Input from a modality service after ClawRouter SDK normalization.
+/// Input from a modality service after provider adapter normalization.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct NormalizedProviderBatchInput {
     pub batch_id: String,
@@ -90,9 +95,18 @@ impl NormalizedProviderBatchInput {
                 scene: self.scene,
                 provider: Some(ProviderRef {
                     provider_code: self.provider_code,
-                    provider_asset_id: self.artifacts.first().and_then(|item| item.provider_asset_id.clone()),
-                    provider_uri: self.artifacts.first().and_then(|item| item.provider_uri.clone()),
-                    provider_url: self.artifacts.first().and_then(|item| item.provider_url.clone()),
+                    provider_asset_id: self
+                        .artifacts
+                        .first()
+                        .and_then(|item| item.provider_asset_id.clone()),
+                    provider_uri: self
+                        .artifacts
+                        .first()
+                        .and_then(|item| item.provider_uri.clone()),
+                    provider_url: self
+                        .artifacts
+                        .first()
+                        .and_then(|item| item.provider_url.clone()),
                 }),
                 model: self.model,
             },
@@ -116,5 +130,28 @@ impl NormalizedProviderBatchInput {
         };
         batch.validate()?;
         Ok(batch)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::ProviderAdapterProfile;
+
+    #[test]
+    fn provider_profiles_expose_only_canonical_adapter_ids() {
+        let profiles = [
+            ProviderAdapterProfile::IMAGE,
+            ProviderAdapterProfile::VIDEO,
+            ProviderAdapterProfile::VOICE,
+            ProviderAdapterProfile::MUSIC,
+            ProviderAdapterProfile::SOUND_EFFECT,
+        ];
+
+        for profile in profiles {
+            assert!(profile.adapter_id.starts_with("sdkwork-"));
+            assert!(profile.adapter_id.ends_with("provider-adapter"));
+            assert!(!profile.adapter_id.contains("clawrouter"));
+            assert!(!profile.modality.is_empty());
+        }
     }
 }

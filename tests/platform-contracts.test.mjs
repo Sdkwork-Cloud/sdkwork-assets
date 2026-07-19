@@ -25,10 +25,12 @@ test('platform contract crates exist', () => {
   assert.ok(component.component.surfaces.platform.crates.includes('crates/sdkwork-assets-ingestion-drive'));
 });
 
-test('ingestion documents clawrouter integration boundary', () => {
-  const source = readUtf8('crates/sdkwork-assets-ingestion/src/clawrouter.rs');
-  assert.match(source, /clawrouter_open_sdk/);
-  assert.match(source, /sdkwork-image-claw-router-provider-service/);
+test('ingestion documents transport-neutral provider adapter boundary', () => {
+  const source = readUtf8('crates/sdkwork-assets-ingestion/src/provider.rs');
+  assert.match(source, /ProviderAdapterProfile/);
+  assert.match(source, /sdkwork-image-generation-provider-adapter/);
+  assert.match(source, /sdkwork-video-generation-provider-adapter/);
+  assert.doesNotMatch(source, /provider-claw-router|clawrouter_open_sdk/);
 });
 
 test('assets-core exports canonical MediaResource fields', () => {

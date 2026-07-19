@@ -97,23 +97,23 @@ impl IngestionPlanBuilder {
             .map(|provider| provider.provider_code.clone())
             .unwrap_or_else(|| "unknown".to_string());
 
-        let drive_space_id = build_ai_generated_space_id(
-            &context.owner_subject_type,
-            &context.owner_subject_id,
-        );
+        let drive_space_id =
+            build_ai_generated_space_id(&context.owner_subject_type, &context.owner_subject_id);
         let modality = batch.provenance.modality.trim();
         let items = batch
             .artifacts
             .iter()
-            .map(|artifact| build_item_plan(
-                artifact,
-                generation_id,
-                modality,
-                &batch.provenance.scene,
-                &provider_code,
-                &drive_space_id,
-                context,
-            ))
+            .map(|artifact| {
+                build_item_plan(
+                    artifact,
+                    generation_id,
+                    modality,
+                    &batch.provenance.scene,
+                    &provider_code,
+                    &drive_space_id,
+                    context,
+                )
+            })
             .collect::<Result<Vec<_>, IngestionError>>()?;
 
         Ok(DriveImportPlan {
@@ -171,7 +171,9 @@ fn build_item_plan(
         }),
         metadata: None,
     };
-    media_resource.validate().map_err(|_| IngestionError::InvalidBatch("invalid media resource"))?;
+    media_resource
+        .validate()
+        .map_err(|_| IngestionError::InvalidBatch("invalid media resource"))?;
 
     Ok(DriveImportItemPlan {
         output_index: artifact.index,

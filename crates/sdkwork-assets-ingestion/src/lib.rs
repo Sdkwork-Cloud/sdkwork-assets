@@ -1,16 +1,13 @@
 //! Ingestion orchestration for provider outcomes → Drive `ai_generated` → optional global assets catalog.
 //!
-//! Modality backend services invoke `clawrouter_open_sdk::SdkworkAiClient` first, normalize outputs
-//! into [`MediaArtifactBatch`], then call this crate to plan and execute Drive import.
+//! Modality backend services invoke their registered provider adapter, normalize outputs into
+//! [`MediaArtifactBatch`], then call this crate to plan and execute Drive import.
 
-mod clawrouter;
 mod drive_layout;
 mod plan;
 mod promote;
+mod provider;
 
-pub use clawrouter::{
-    ClawRouterIntegrationProfile, NormalizedProviderBatchInput, ProviderGenerationPhase,
-};
 pub use drive_layout::{
     build_ai_generated_node_id, build_ai_generated_space_id, build_drive_uri, build_upload_task_id,
     stable_identifier_suffix, upload_profile_for_media_kind,
@@ -19,7 +16,10 @@ pub use plan::{
     media_kind_from_str, DriveImportExecutionResult, DriveImportItemPlan, DriveImportPlan,
     DriveIngestContext, DriveSpaceProfile, IngestionError, IngestionPlanBuilder,
 };
-pub use promote::{build_ai_generated_catalog_ref, AssetPromoteOptions, AssetPromoteRequest, AssetPromoteResult};
+pub use promote::{
+    build_ai_generated_catalog_ref, AssetPromoteOptions, AssetPromoteRequest, AssetPromoteResult,
+};
+pub use provider::{NormalizedProviderBatchInput, ProviderAdapterProfile, ProviderGenerationPhase};
 
 use sdkwork_assets_contract::MediaArtifactBatch;
 

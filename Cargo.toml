@@ -13,6 +13,9 @@ edition = "2021"
 license = "Apache-2.0"
 
 [workspace.dependencies]
+sdkwork-assets-contract = { path = "crates/sdkwork-assets-contract" }
+sdkwork-assets-ingestion = { path = "crates/sdkwork-assets-ingestion" }
+sdkwork-assets-ingestion-drive = { path = "crates/sdkwork-assets-ingestion-drive" }
 sdkwork-drive-workspace-service = { path = "../sdkwork-drive/crates/sdkwork-drive-workspace-service" }
 sdkwork-image-generation-service = { path = "../sdkwork-image/crates/sdkwork-image-generation-service" }
 serde = { version = "1", features = ["derive"] }

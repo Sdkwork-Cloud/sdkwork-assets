@@ -5,7 +5,7 @@ edition.workspace = true
 description = "Unified multi-artifact ingestion orchestration over sdkwork-drive (planning + execution traits)."
 
 [dependencies]
-sdkwork-assets-contract = { path = "../sdkwork-assets-contract" }
+sdkwork-assets-contract.workspace = true
 serde.workspace = true
 serde_json.workspace = true
 thiserror.workspace = true

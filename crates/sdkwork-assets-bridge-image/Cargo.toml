@@ -5,11 +5,11 @@ edition.workspace = true
 description = "Image modality bridge: GeneratedMediaOutput → MediaArtifactBatch and drive plan alignment."
 
 [dependencies]
-sdkwork-assets-contract = { path = "../sdkwork-assets-contract" }
-sdkwork-assets-ingestion = { path = "../sdkwork-assets-ingestion" }
+sdkwork-assets-contract.workspace = true
+sdkwork-assets-ingestion.workspace = true
 sdkwork-image-generation-service = { workspace = true }
 
 [dev-dependencies]
 serde_json = "1"
 sdkwork-image-generation-service = { workspace = true }
-sdkwork-assets-ingestion-drive = { path = "../sdkwork-assets-ingestion-drive" }
+sdkwork-assets-ingestion-drive.workspace = true
