@@ -1,6 +1,7 @@
 [workspace]
 resolver = "2"
 members = [
+    "crates/sdkwork-api-assets-standalone-gateway",
     "crates/sdkwork-api-assets-assembly",
   "crates/sdkwork-assets-contract",
   "crates/sdkwork-assets-ingestion",
