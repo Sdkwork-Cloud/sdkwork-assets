@@ -15,6 +15,9 @@ edition = "2021"
 license = "Apache-2.0"
 
 [workspace.dependencies]
+tokio = { version = "1.48", features = ["macros", "rt-multi-thread"] }
+sdkwork-web-bootstrap = { path = "../sdkwork-web-framework/crates/sdkwork-web-bootstrap" }
+sdkwork-api-assets-assembly = { path = "crates/sdkwork-api-assets-assembly" }
 sdkwork-assets-contract = { path = "crates/sdkwork-assets-contract" }
 sdkwork-assets-ingestion = { path = "crates/sdkwork-assets-ingestion" }
 sdkwork-assets-ingestion-drive = { path = "crates/sdkwork-assets-ingestion-drive" }
