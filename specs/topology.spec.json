@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "kind": "sdkwork.app.topology",
   "appId": "sdkwork-assets",
   "archetype": "application-http-gateway",
@@ -58,8 +58,6 @@
       "protocols": [
         "http"
       ],
-      "owner": "sdkwork-api-cloud-gateway",
-      "bindEnv": "SDKWORK_API_CLOUD_GATEWAY_BIND",
       "httpUrlEnv": "SDKWORK_ASSETS_PLATFORM_API_GATEWAY_HTTP_URL",
       "clientHttpEnv": "VITE_SDKWORK_ASSETS_PLATFORM_API_GATEWAY_HTTP_URL"
     }
@@ -72,21 +70,16 @@
             "id": "web-renderer",
             "package": "sdkwork-assets-pc-react",
             "script": "dev",
-            "required": true
+            "required": true,
+            "role": "api-standalone-gateway"
           }
         ],
         "healthSurfaces": []
       },
       "cloud.development": {
-        "processes": [
-          {
-            "id": "web-renderer",
-            "package": "sdkwork-assets-pc-react",
-            "script": "dev",
-            "required": true
-          }
-        ],
+        "processes": [],
         "healthSurfaces": [
+          "application.public-ingress",
           "platform.api-gateway"
         ]
       },
@@ -96,7 +89,8 @@
             "id": "web-renderer",
             "package": "sdkwork-assets-pc-react",
             "script": "build",
-            "required": true
+            "required": true,
+            "role": "client"
           }
         ],
         "healthSurfaces": [
@@ -109,7 +103,8 @@
             "id": "web-renderer",
             "package": "sdkwork-assets-pc-react",
             "script": "dev",
-            "required": true
+            "required": true,
+            "role": "client"
           }
         ],
         "healthSurfaces": []
@@ -128,22 +123,12 @@
         ]
       }
     ],
-    "cloudConfigFiles": [
-      "sdkwork-api-cloud-gateway.assets.development.toml",
-      "sdkwork-api-cloud-gateway.assets.production.toml"
-    ]
+    "cloudConfigFiles": []
   },
   "cloudPublicHosts": {
     "platform.api-gateway": {
       "httpHost": "api.sdkwork.com"
     }
   },
-  "components": {
-    "cloudGateway": {
-      "crate": "sdkwork-api-cloud-gateway",
-      "binary": "sdkwork-api-cloud-gateway",
-      "repository": "sdkwork-api-cloud-gateway",
-      "configGlob": "configs/sdkwork-api-cloud-gateway.assets.{profile}.toml"
-    }
-  }
+  "components": {}
 }
