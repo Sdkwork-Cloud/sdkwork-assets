@@ -1,6 +1,7 @@
 export type {
   MediaChecksum,
   MediaKind,
+  MediaKind as MediaResourceKind,
   MediaResource,
   MediaResourceLike,
   MediaSource,
