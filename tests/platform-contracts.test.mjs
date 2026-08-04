@@ -30,7 +30,7 @@ test('ingestion documents transport-neutral provider adapter boundary', () => {
   assert.match(source, /ProviderAdapterProfile/);
   assert.match(source, /sdkwork-image-generation-provider-adapter/);
   assert.match(source, /sdkwork-video-generation-provider-adapter/);
-  assert.doesNotMatch(source, /provider-claw-router|clawrouter_open_sdk/);
+  assert.doesNotMatch(source, /provider-cloud-router|cloudrouter_open_sdk/);
 });
 
 test('assets-core exports canonical MediaResource fields', () => {

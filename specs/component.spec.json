@@ -23,7 +23,7 @@
     },
     "authorities": {
       "globalAssetsApi": "sdkwork-drive-app-api",
-      "aiProviderRouting": "clawrouter-open-sdk",
+      "aiProviderRouting": "cloudrouter-open-sdk",
       "generationRecords": "sdkwork-generations-app-api"
     },
     "forbiddenOwnership": [

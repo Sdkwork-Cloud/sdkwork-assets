@@ -4,7 +4,7 @@
 
 ```text
 Modality backends (image/video/music/audio)
-  -> clawrouter_open_sdk::SdkworkAiClient
+  -> cloudrouter_open_sdk::SdkworkAiClient
   -> sdkwork-assets-ingestion (MediaArtifactBatch + DriveImportPlan)
   -> sdkwork-drive (ai_generated import + /assets catalog)
 

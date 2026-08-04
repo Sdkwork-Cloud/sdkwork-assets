@@ -20,6 +20,7 @@
     "@sdkwork/assets-pc-commons": "workspace:*",
     "@sdkwork/assets-pc-core": "workspace:*",
     "@sdkwork/auth-pc-react": "workspace:*",
+    "@sdkwork/utils": "workspace:*",
     "react": "catalog:"
   },
   "devDependencies": {

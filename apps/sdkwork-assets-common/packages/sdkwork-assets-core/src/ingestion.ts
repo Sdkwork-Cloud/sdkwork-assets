@@ -139,12 +139,12 @@ export function buildAiGeneratedCatalogRef(imported: ImportedMediaArtifact): Ass
   };
 }
 
-export const CLAWROUTER_OPEN_SDK_INTEGRATION = {
-  rustCrate: 'clawrouter_open_sdk',
+export const CLOUDROUTER_OPEN_SDK_INTEGRATION = {
+  rustCrate: 'cloudrouter_open_sdk',
   modalities: ['image', 'video', 'music', 'audio'] as const,
 } as const;
 
-export type ClawRouterModality = typeof CLAWROUTER_OPEN_SDK_INTEGRATION.modalities[number];
+export type CloudRouterModality = typeof CLOUDROUTER_OPEN_SDK_INTEGRATION.modalities[number];
 
 export function resolveMediaKindFromModality(modality: string): MediaKind {
   switch (modality.trim().toLowerCase()) {

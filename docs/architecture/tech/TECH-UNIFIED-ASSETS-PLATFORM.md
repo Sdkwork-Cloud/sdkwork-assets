@@ -9,7 +9,7 @@ SDKWork Assets is the **unified asset management platform** for AI-generated and
 - **One canonical media model** (`MediaResource`, `MediaArtifactBatch`)
 - **One multi-artifact ingestion pipeline** (1 generation → N files)
 - **One Drive-backed persistence model** (`ai_generated` space → global `/assets` catalog)
-- **One ClawRouter integration boundary** for modality backends
+- **One CloudRouter integration boundary** for modality backends
 
 Assets **does not** own object storage, relational metadata, or the global assets HTTP API. Those remain in `sdkwork-drive`.
 
@@ -36,7 +36,7 @@ Assets **does not** own object storage, relational metadata, or the global asset
 └─────────────────────────────────────────────────────────────────┘
 
 Modality backends (image, video, music, audio):
-  clawrouter_open_sdk::SdkworkAiClient → normalize → assets-ingestion
+  cloudrouter_open_sdk::SdkworkAiClient → normalize → assets-ingestion
 ```
 
 ## 3. Asset taxonomy (orthogonal dimensions)
@@ -97,22 +97,22 @@ AI-generated imports attach `ai.provenance = generated` and `ai.generationTaskId
 | Music generation | sdkwork-music | `/app/v3/api/music/generations*` |
 | Audio generation | sdkwork-audio | `/app/v3/api/audio/generations/*` |
 | Playground facade | sdkwork-generations | `/app/v3/api/generations/*` |
-| Provider relay | sdkwork-clawrouter | `/v1/*` open-sdk |
+| Provider relay | sdkwork-cloudrouter | `/v1/*` open-sdk |
 
 ## 6. Package map
 
 | Package | Language | Role |
 | --- | --- | --- |
 | `sdkwork-assets-contract` | Rust | Canonical types |
-| `sdkwork-assets-ingestion` | Rust | Batch planning, ClawRouter boundary |
+| `sdkwork-assets-ingestion` | Rust | Batch planning, CloudRouter boundary |
 | `sdkwork-assets-ingestion-drive` | Rust | Drive uploader command builder |
 | `sdkwork-assets-bridge-image` | Rust | Image modality bridge |
 | `@sdkwork/assets-core` | TypeScript | Contracts, ingestion planning, catalog mapping |
 | `@sdkwork/assets-pc-*` | TypeScript | PC client UI |
 
-## 7. ClawRouter integration
+## 7. CloudRouter integration
 
-Modality Rust services integrate **`clawrouter-open-sdk`** only. After provider normalization:
+Modality Rust services integrate **`cloudrouter-open-sdk`** only. After provider normalization:
 
 ```rust
 let plan = IngestionPlanBuilder::plan_drive_import(&batch, &context)?;

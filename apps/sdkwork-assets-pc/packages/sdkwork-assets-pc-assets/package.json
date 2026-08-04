@@ -37,6 +37,7 @@
     "@sdkwork/assets-pc-commons": "workspace:*",
     "@sdkwork/assets-pc-core": "workspace:*",
     "@sdkwork/drive-app-sdk": "workspace:*",
+    "@sdkwork/generations-pc-workspace": "workspace:*",
     "@sdkwork/utils": "workspace:*",
     "@tanstack/react-query": "catalog:",
     "lucide-react": "catalog:",

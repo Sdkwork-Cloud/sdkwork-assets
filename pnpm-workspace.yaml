@@ -138,3 +138,4 @@ catalog:
   tailwindcss-animate: ^1.0.7
   tsup: ^8.5.0
   zustand: ^5.0.12
+  - "../../sdkwork-generations/apps/sdkwork-generations-pc/packages/sdkwork-generations-pc-workspace"

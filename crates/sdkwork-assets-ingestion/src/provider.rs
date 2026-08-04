@@ -150,7 +150,7 @@ mod tests {
         for profile in profiles {
             assert!(profile.adapter_id.starts_with("sdkwork-"));
             assert!(profile.adapter_id.ends_with("provider-adapter"));
-            assert!(!profile.adapter_id.contains("clawrouter"));
+            assert!(!profile.adapter_id.contains("cloudrouter"));
             assert!(!profile.modality.is_empty());
         }
     }
