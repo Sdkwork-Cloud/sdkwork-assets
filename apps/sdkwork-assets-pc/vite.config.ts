@@ -68,16 +68,14 @@ export default defineConfig(({ mode }) => {
   return {
     define: {
       'process.env.SDKWORK_ACCESS_TOKEN': JSON.stringify(env.SDKWORK_ACCESS_TOKEN ?? ''),
-    },
-    envDir,
-    plugins: [react(), tailwindcss(), browserSecurityHeadersPlugin(mode === 'development')],
-    define: {
       __SDKWORK_ASSETS_ENV__: JSON.stringify({
         ...env,
         MODE: mode,
         VITE_APP_ENV: env.VITE_APP_ENV || mode,
       }),
     },
+    envDir,
+    plugins: [react(), tailwindcss(), browserSecurityHeadersPlugin(mode === 'development')],
     build: {
       rollupOptions: {
         output: {

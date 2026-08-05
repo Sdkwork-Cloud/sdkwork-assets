@@ -1,13 +1,13 @@
 import type { InfiniteData, QueryClient } from '@tanstack/react-query';
-import type { AssetItem, AssetPage } from '@sdkwork/drive-app-sdk';
+import type { AssetItem, AssetListData } from '@sdkwork/drive-app-sdk';
 
-type AssetsInfiniteData = InfiniteData<AssetPage, string | undefined>;
+type AssetsInfiniteData = InfiniteData<AssetListData, string | undefined>;
 
 function patchAssetLifecycleInPages(
-  pages: AssetPage[],
+  pages: AssetListData[],
   assetId: string,
   lifecycleStatus: AssetItem['lifecycleStatus'],
-): AssetPage[] {
+): AssetListData[] {
   return pages.map((page) => ({
     ...page,
     items: page.items.map((item) =>

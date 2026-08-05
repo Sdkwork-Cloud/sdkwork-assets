@@ -1,6 +1,6 @@
 import { useDeferredValue, useMemo } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import type { AssetItem, AssetPage } from '@sdkwork/drive-app-sdk';
+import type { AssetItem, AssetListData } from '@sdkwork/drive-app-sdk';
 import { useDriveAppClient } from '@sdkwork/assets-pc-core';
 import { createAssetCatalogService } from '../services/assetCatalogService';
 import { getNextAssetsCursor } from '../utils/assetPagination';
@@ -55,6 +55,6 @@ export function useAssetsListInfiniteQuery({
   });
 }
 
-export function flattenAssetPages(pages: AssetPage[] | undefined): AssetItem[] {
+export function flattenAssetPages(pages: AssetListData[] | undefined): AssetItem[] {
   return pages?.flatMap((page) => page.items) ?? [];
 }

@@ -29,6 +29,16 @@ packages:
   - "../sdkwork-drive/sdks/sdkwork-drive-app-sdk/sdkwork-drive-app-sdk-typescript"
   - "../sdkwork-drive/sdks/sdkwork-drive-app-sdk/sdkwork-drive-app-sdk-typescript/src/index.ts"
 
+  - "../sdkwork-generations/apps/sdkwork-generations-pc/packages/sdkwork-generations-pc-workspace"
+  - "../sdkwork-audio/apps/sdkwork-audio-pc/packages/sdkwork-audio-pc-generation"
+  - "../sdkwork-generations/apps/sdkwork-generations-pc/packages/sdkwork-generations-pc-asset-config"
+  - "../sdkwork-generations/apps/sdkwork-generations-pc/packages/sdkwork-generations-pc-studio"
+  - "../sdkwork-image/apps/sdkwork-image-pc/packages/sdkwork-image-pc-generation"
+  - "../sdkwork-models/apps/sdkwork-models-pc/packages/sdkwork-models-pc-picker"
+  - "../sdkwork-music/apps/sdkwork-music-pc/packages/sdkwork-music-pc-generation"
+  - "../sdkwork-video/apps/sdkwork-video-pc/packages/sdkwork-video-pc-generation"
+  - "../sdkwork-iam/apps/sdkwork-iam-pc/packages/sdkwork-user-center-core-pc-react"
+  - "../sdkwork-image/apps/sdkwork-image-common/packages/sdkwork-image-contracts"
 catalog:
   "@tailwindcss/vite": ^4.2.2
   react: ^19.2.4
@@ -138,4 +148,9 @@ catalog:
   tailwindcss-animate: ^1.0.7
   tsup: ^8.5.0
   zustand: ^5.0.12
-  - "../../sdkwork-generations/apps/sdkwork-generations-pc/packages/sdkwork-generations-pc-workspace"
+
+
+
+
+
+
