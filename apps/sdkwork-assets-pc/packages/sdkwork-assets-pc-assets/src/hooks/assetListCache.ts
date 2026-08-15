@@ -1,5 +1,5 @@
 import type { InfiniteData, QueryClient } from '@tanstack/react-query';
-import type { AssetItem, AssetListData } from '@sdkwork/drive-app-sdk';
+import type { AssetItem, AssetListData } from '@sdkwork/assets-pc-core';
 
 type AssetsInfiniteData = InfiniteData<AssetListData, string | undefined>;
 

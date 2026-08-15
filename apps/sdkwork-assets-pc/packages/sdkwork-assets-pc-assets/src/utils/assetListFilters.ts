@@ -1,5 +1,5 @@
 import { isBlank } from '@sdkwork/utils';
-import type { AssetItem } from '@sdkwork/drive-app-sdk';
+import type { AssetItem } from '@sdkwork/assets-pc-core';
 import type { ListAssetsQuery } from '../services/assetCatalogService';
 
 export type AssetKindFilter = AssetItem['assetKind'] | '';

@@ -1,4 +1,4 @@
-import type { AssetItem } from '@sdkwork/drive-app-sdk';
+import type { AssetItem } from '@sdkwork/assets-pc-core';
 
 export type AssetViewFilter = 'active' | 'archived' | 'all';
 

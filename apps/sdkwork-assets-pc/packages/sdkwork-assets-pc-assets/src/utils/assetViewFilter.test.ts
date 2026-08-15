@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { AssetItem } from '@sdkwork/drive-app-sdk';
+import type { AssetItem } from '@sdkwork/assets-pc-core';
 import { matchesAssetViewFilter } from './assetViewFilter';
 
 function assetWithLifecycle(lifecycleStatus: AssetItem['lifecycleStatus']): AssetItem {

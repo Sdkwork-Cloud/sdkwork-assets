@@ -1,5 +1,5 @@
 import { isBlank } from '@sdkwork/utils';
-import type { AssetItem, AssetListData, DriveUploaderProgress } from '@sdkwork/drive-app-sdk';
+import type { AssetItem, AssetListData, DriveUploaderProgress } from '@sdkwork/assets-pc-core';
 import type { DriveAppClient } from '@sdkwork/assets-pc-core';
 import { mapProblemDetailToMessage } from '@sdkwork/assets-pc-commons';
 

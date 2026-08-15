@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import type { AssetItem } from '@sdkwork/drive-app-sdk';
+import type { AssetItem } from '@sdkwork/assets-pc-core';
 import { formatAssetKindLabel } from '@sdkwork/assets-pc-commons';
 import { AssetsListFiltersBar } from './AssetsListFiltersBar';
 import {

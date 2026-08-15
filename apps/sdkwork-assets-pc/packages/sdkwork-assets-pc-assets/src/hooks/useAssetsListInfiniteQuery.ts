@@ -1,6 +1,6 @@
 import { useDeferredValue, useMemo } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import type { AssetItem, AssetListData } from '@sdkwork/drive-app-sdk';
+import type { AssetItem, AssetListData } from '@sdkwork/assets-pc-core';
 import { useDriveAppClient } from '@sdkwork/assets-pc-core';
 import { createAssetCatalogService } from '../services/assetCatalogService';
 import { getNextAssetsCursor } from '../utils/assetPagination';

@@ -6,4 +6,4 @@ export {
   type ListAssetsQuery,
   type UploadAssetInput,
 } from './services/assetCatalogService';
-export type { AssetItem } from '@sdkwork/drive-app-sdk';
+export type { AssetItem } from '@sdkwork/assets-pc-core';

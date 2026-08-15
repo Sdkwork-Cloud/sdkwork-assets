@@ -9,6 +9,7 @@ import {
 import { getAssetsIamBundle } from '../iam/assetsIamRuntime';
 
 export type DriveAppClient = SdkworkDriveAppClient;
+export type { AssetItem, AssetListData, DriveUploaderProgress } from '@sdkwork/drive-app-sdk';
 
 export { resetDriveAppClient };
 
