@@ -72,6 +72,42 @@
       "ref": "main",
       "refInput": "SDKWORK_SDK_COMMONS_REF",
       "tokenSecret": "SDKWORK_RELEASE_TOKEN"
+    },
+    {
+      "id": "sdkwork-audio",
+      "repository": "sdkwork-ai/sdkwork-audio",
+      "refInput": "SDKWORK_AUDIO_REF",
+      "tokenSecret": "SDKWORK_RELEASE_TOKEN"
+    },
+    {
+      "id": "sdkwork-generations",
+      "repository": "sdkwork-ai/sdkwork-generations",
+      "refInput": "SDKWORK_GENERATIONS_REF",
+      "tokenSecret": "SDKWORK_RELEASE_TOKEN"
+    },
+    {
+      "id": "sdkwork-image",
+      "repository": "sdkwork-ai/sdkwork-image",
+      "refInput": "SDKWORK_IMAGE_REF",
+      "tokenSecret": "SDKWORK_RELEASE_TOKEN"
+    },
+    {
+      "id": "sdkwork-models",
+      "repository": "sdkwork-ai/sdkwork-models",
+      "refInput": "SDKWORK_MODELS_REF",
+      "tokenSecret": "SDKWORK_RELEASE_TOKEN"
+    },
+    {
+      "id": "sdkwork-music",
+      "repository": "sdkwork-ai/sdkwork-music",
+      "refInput": "SDKWORK_MUSIC_REF",
+      "tokenSecret": "SDKWORK_RELEASE_TOKEN"
+    },
+    {
+      "id": "sdkwork-video",
+      "repository": "sdkwork-ai/sdkwork-video",
+      "refInput": "SDKWORK_VIDEO_REF",
+      "tokenSecret": "SDKWORK_RELEASE_TOKEN"
     }
   ],
   "toolchains": {
@@ -114,9 +150,13 @@
       "profile": "browser",
       "platform": "web",
       "architecture": "universal",
-      "formats": ["zip"],
+      "formats": [
+        "zip"
+      ],
       "runner": "ubuntu-latest",
-      "outputGlobs": ["apps/sdkwork-assets-pc/dist/**"],
+      "outputGlobs": [
+        "apps/sdkwork-assets-pc/dist/**"
+      ],
       "deploymentProfile": "cloud",
       "runtimeTarget": "browser"
     },
@@ -125,9 +165,13 @@
       "profile": "browser",
       "platform": "web",
       "architecture": "universal",
-      "formats": ["zip"],
+      "formats": [
+        "zip"
+      ],
       "runner": "ubuntu-latest",
-      "outputGlobs": ["apps/sdkwork-assets-pc/dist/**"],
+      "outputGlobs": [
+        "apps/sdkwork-assets-pc/dist/**"
+      ],
       "deploymentProfile": "standalone",
       "runtimeTarget": "browser"
     }
