@@ -28,7 +28,6 @@ packages:
   - "../sdkwork-iam/sdks/sdkwork-iam-backend-sdk/sdkwork-iam-backend-sdk-typescript/src/index.ts"
   - "../sdkwork-drive/sdks/sdkwork-drive-app-sdk/sdkwork-drive-app-sdk-typescript"
   - "../sdkwork-drive/sdks/sdkwork-drive-app-sdk/sdkwork-drive-app-sdk-typescript/src/index.ts"
-
   - "../sdkwork-generations/apps/sdkwork-generations-pc/packages/sdkwork-generations-pc-workspace"
   - "../sdkwork-audio/apps/sdkwork-audio-pc/packages/sdkwork-audio-pc-generation"
   - "../sdkwork-generations/apps/sdkwork-generations-pc/packages/sdkwork-generations-pc-asset-config"
@@ -39,6 +38,7 @@ packages:
   - "../sdkwork-video/apps/sdkwork-video-pc/packages/sdkwork-video-pc-generation"
   - "../sdkwork-iam/apps/sdkwork-iam-pc/packages/sdkwork-user-center-core-pc-react"
   - "../sdkwork-image/apps/sdkwork-image-common/packages/sdkwork-image-contracts"
+
 catalog:
   "@monaco-editor/react": ^4.7.0
   "@playwright/test": ^1.52.0
