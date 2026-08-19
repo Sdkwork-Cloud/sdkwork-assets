@@ -1,7 +1,8 @@
 //! Canonical contracts for SDKWork unified asset management.
 //!
 //! Authority: `MEDIA_RESOURCE_SPEC.md`, `DRIVE_SPEC.md`.
-//! Storage lifecycle and `/app/v3/api/assets*` remain owned by `sdkwork-drive`.
+//! Storage lifecycle remains owned by `sdkwork-drive`; global asset catalog HTTP
+//! authority lives in `sdkwork-assets` (`/app/v3/api/assets*`).
 
 mod artifact;
 mod media_kind;

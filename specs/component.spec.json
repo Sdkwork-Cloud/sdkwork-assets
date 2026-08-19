@@ -12,7 +12,9 @@
           "crates/sdkwork-assets-contract",
           "crates/sdkwork-assets-ingestion",
           "crates/sdkwork-assets-ingestion-drive",
-          "crates/sdkwork-assets-bridge-image"
+          "crates/sdkwork-assets-bridge-image",
+          "crates/sdkwork-routes-assets-app-api",
+          "crates/sdkwork-api-assets-assembly"
         ]
       },
       "client": {
@@ -22,12 +24,14 @@
       }
     },
     "authorities": {
-      "globalAssetsApi": "sdkwork-drive-app-api",
+      "globalAssetsApi": "sdkwork-assets-app-api",
       "aiProviderRouting": "cloudrouter-open-sdk",
       "generationRecords": "sdkwork-generations-app-api"
     },
+    "sdkFamilies": [
+      "sdks/sdkwork-assets-app-sdk"
+    ],
     "forbiddenOwnership": [
-      "platform-http-app-api",
       "relational-database",
       "object-storage-lifecycle"
     ]

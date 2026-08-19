@@ -91,7 +91,7 @@ AI-generated imports attach `ai.provenance = generated` and `ai.generationTaskId
 
 | Capability | Owning repo | Path prefix |
 | --- | --- | --- |
-| Global asset catalog | sdkwork-drive | `/app/v3/api/assets*` |
+| Global asset catalog | sdkwork-assets | `/app/v3/api/assets*` |
 | Image generation | sdkwork-image | `/app/v3/api/image/generations*` |
 | Video generation | sdkwork-video | `/app/v3/api/video/generations*` |
 | Music generation | sdkwork-music | `/app/v3/api/music/generations*` |
@@ -128,7 +128,8 @@ Raw provider HTTP from modality services is forbidden.
 | `@sdkwork/image-contracts` | Re-exports `@sdkwork/assets-core` (`SdkworkMediaResource` alias) |
 | `@sdkwork/generations-pc-workspace` | Uses `@sdkwork/assets-pc-commons` + `readMediaResourceUrl` |
 | `sdkwork-image-generation-runtime-service` | Executes imports via `sdkwork-assets-bridge-image` + `sdkwork-assets-ingestion-drive` |
-| `@sdkwork/drive-app-sdk` | Owns `AssetItem`; OpenAPI `MediaResource` aligned to spec |
+| `@sdkwork/assets-app-sdk` | Owns global `AssetItem` catalog operations |
+| `@sdkwork/drive-app-sdk` | Owns uploader/storage; OpenAPI `MediaResource` aligned to spec |
 
 Verification: `node --test tests/cross-repo-media-alignment.test.mjs` from `sdkwork-assets` root.
 

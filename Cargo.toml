@@ -3,6 +3,7 @@ resolver = "2"
 members = [
     "crates/sdkwork-api-assets-standalone-gateway",
     "crates/sdkwork-api-assets-assembly",
+    "crates/sdkwork-routes-assets-app-api",
   "crates/sdkwork-assets-contract",
   "crates/sdkwork-assets-ingestion",
   "crates/sdkwork-assets-ingestion-drive",
@@ -16,13 +17,23 @@ license = "AGPL-3.0-or-later"
 
 [workspace.dependencies]
 tokio = { version = "1.48", features = ["macros", "rt-multi-thread"] }
+axum = { version = "0.8", features = ["macros"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sqlx = { version = "0.9", default-features = false, features = ["runtime-tokio", "tls-rustls", "postgres", "chrono"] }
+tower = { version = "0.5", features = ["util"] }
 sdkwork-web-bootstrap = { path = "../sdkwork-web-framework/crates/sdkwork-web-bootstrap" }
+sdkwork-web-core = { path = "../sdkwork-web-framework/crates/sdkwork-web-core" }
+sdkwork-utils-rust = { path = "../sdkwork-utils/packages/sdkwork-utils-rust" }
+sdkwork-database-sqlx = { path = "../sdkwork-database/crates/sdkwork-database-sqlx", package = "sdkwork-database-sqlx" }
 sdkwork-api-assets-assembly = { path = "crates/sdkwork-api-assets-assembly" }
+sdkwork-routes-assets-app-api = { path = "crates/sdkwork-routes-assets-app-api" }
+sdkwork-routes-drive-app-api = { path = "../sdkwork-drive/crates/sdkwork-routes-drive-app-api" }
+sdkwork-drive-http = { path = "../sdkwork-drive/crates/sdkwork-drive-http", features = ["redis-rate-limit"] }
+sdkwork-drive-contract = { path = "../sdkwork-drive/crates/sdkwork-drive-contract" }
+sdkwork-drive-workspace-service = { path = "../sdkwork-drive/crates/sdkwork-drive-workspace-service" }
 sdkwork-assets-contract = { path = "crates/sdkwork-assets-contract" }
 sdkwork-assets-ingestion = { path = "crates/sdkwork-assets-ingestion" }
 sdkwork-assets-ingestion-drive = { path = "crates/sdkwork-assets-ingestion-drive" }
-sdkwork-drive-workspace-service = { path = "../sdkwork-drive/crates/sdkwork-drive-workspace-service" }
 sdkwork-image-generation-service = { path = "../sdkwork-image/crates/sdkwork-image-generation-service" }
-serde = { version = "1", features = ["derive"] }
-serde_json = "1"
 thiserror = "2"

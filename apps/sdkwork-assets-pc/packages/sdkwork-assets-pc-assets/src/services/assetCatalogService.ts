@@ -1,9 +1,19 @@
 import { isBlank } from '@sdkwork/utils';
-import type { AssetItem, AssetListData, DriveUploaderProgress } from '@sdkwork/assets-pc-core';
-import type { DriveAppClient } from '@sdkwork/assets-pc-core';
+import type {
+  AssetItem,
+  AssetListData,
+  AssetsAppClient,
+  DriveAppClient,
+  DriveUploaderProgress,
+} from '@sdkwork/assets-pc-core';
 import { mapProblemDetailToMessage } from '@sdkwork/assets-pc-commons';
 
 export type { AssetItem };
+
+export interface AssetCatalogClients {
+  assets: AssetsAppClient;
+  drive: DriveAppClient;
+}
 
 export interface ListAssetsQuery {
   cursor?: string;
@@ -21,11 +31,11 @@ export interface UploadAssetInput {
 }
 
 export class AssetCatalogService {
-  constructor(private readonly client: DriveAppClient) {}
+  constructor(private readonly clients: AssetCatalogClients) {}
 
   async listAssets(query: ListAssetsQuery = {}): Promise<AssetListData> {
     try {
-      return await this.client.drive.assets.list({
+      return await this.clients.assets.assets.list({
         cursor: query.cursor,
         pageSize: query.pageSize ?? 24,
         kind: query.kind,
@@ -39,7 +49,7 @@ export class AssetCatalogService {
 
   async getAsset(assetId: string): Promise<AssetItem> {
     try {
-      return await this.client.drive.assets.retrieve(assetId);
+      return await this.clients.assets.assets.retrieve(assetId);
     } catch (error) {
       throw new Error(mapProblemDetailToMessage(error, 'Failed to load asset'));
     }
@@ -47,7 +57,7 @@ export class AssetCatalogService {
 
   async archiveAsset(assetId: string): Promise<AssetItem> {
     try {
-      return await this.client.drive.assets.archive(assetId, { reason: 'user_archive' });
+      return await this.clients.assets.assets.archive(assetId, { reason: 'user_archive' });
     } catch (error) {
       throw new Error(mapProblemDetailToMessage(error, 'Failed to archive asset'));
     }
@@ -55,7 +65,7 @@ export class AssetCatalogService {
 
   async restoreAsset(assetId: string): Promise<AssetItem> {
     try {
-      return await this.client.drive.assets.restore(assetId, { reason: 'user_restore' });
+      return await this.clients.assets.assets.restore(assetId, { reason: 'user_restore' });
     } catch (error) {
       throw new Error(mapProblemDetailToMessage(error, 'Failed to restore asset'));
     }
@@ -63,7 +73,7 @@ export class AssetCatalogService {
 
   async uploadAsset(input: UploadAssetInput): Promise<AssetItem> {
     try {
-      const uploadResult = await this.client.uploader.uploadAttachment({
+      const uploadResult = await this.clients.drive.uploader.uploadAttachment({
         file: input.file,
         appResourceType: 'app_upload',
         appResourceId: 'sdkwork-assets',
@@ -84,6 +94,6 @@ export class AssetCatalogService {
   }
 }
 
-export function createAssetCatalogService(client: DriveAppClient): AssetCatalogService {
-  return new AssetCatalogService(client);
+export function createAssetCatalogService(clients: AssetCatalogClients): AssetCatalogService {
+  return new AssetCatalogService(clients);
 }

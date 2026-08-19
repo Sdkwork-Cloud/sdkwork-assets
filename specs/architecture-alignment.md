@@ -12,7 +12,7 @@ Last reviewed: 2026-07-05
 | PC package architecture | Aligned | `apps/sdkwork-assets-pc/packages/sdkwork-assets-pc-{core,commons,assets,shell,auth,i18n}` |
 | Application root layout | Aligned | `apps/sdkwork-assets-pc/` per `SDKWORK_WORKSPACE_SPEC.md` / `APP_PC_ARCHITECTURE_SPEC.md` |
 | IAM login integration | Aligned | `@sdkwork/auth-runtime-pc-react`, `@sdkwork/auth-pc-react`, `AssetsAuthGate` |
-| Drive global assets API | Aligned | `@sdkwork/drive-app-sdk` via TokenManager-bound client |
+| Drive global assets API | Aligned | `@sdkwork/assets-app-sdk` for catalog; `@sdkwork/drive-app-sdk` for upload |
 | Drive list pagination | Aligned | Shared `useAssetsListInfiniteQuery` + `AssetPage.nextCursor` |
 | Drive list filters | Aligned | Server-side `kind` / `sourceType` via `buildListAssetsQuery` |
 | MediaResource / catalog mapping SSOT | Aligned | `apps/sdkwork-assets-common/packages/sdkwork-assets-core` (`MEDIA_RESOURCE_SPEC` + `asset-mapping`) |
@@ -41,9 +41,9 @@ Last reviewed: 2026-07-05
 
 ### Drive (`DRIVE_SPEC.md` / `sdkwork-drive`)
 
-- Global assets API authority: `sdkwork-drive` (`/app/v3/api/assets*`)
-- Consumer SDK: `@sdkwork/drive-app-sdk` bound to IAM `TokenManager`
-- Upload: `client.uploader.uploadAttachment` with `appResourceType` + `appResourceId`
+- Global assets API authority: `sdkwork-assets-app-api` (`/app/v3/api/assets*`)
+- Catalog consumer SDK: `@sdkwork/assets-app-sdk` bound to IAM `TokenManager`
+- Upload consumer SDK: `@sdkwork/drive-app-sdk` via `client.uploader.uploadAttachment`
 - List pagination: Drive `assets.list` cursor mode via `useAssetsListInfiniteQuery` (`AssetPage.nextCursor`)
 - List filters: server-side `kind` and `sourceType` query params via `buildListAssetsQuery` + `@sdkwork/utils` `isBlank`
 - Archive/restore: command responses update local cache because list items omit archived flag today

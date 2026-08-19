@@ -2,8 +2,20 @@
   "kind": "sdkwork.api.assembly",
   "schemaVersion": 1,
   "applicationCode": "assets",
-  "apiMode": "none",
+  "apiMode": "served",
   "packageName": "sdkwork-api-assets-assembly",
   "crateDir": "crates/sdkwork-api-assets-assembly",
-  "routeCrates": []
+  "routeCrates": [
+    {
+      "packageName": "sdkwork-routes-assets-app-api",
+      "memberDir": "crates/sdkwork-routes-assets-app-api",
+      "libName": "sdkwork_routes_assets_app_api",
+      "surface": "app-api",
+      "pathPrefix": null,
+      "mountOrder": 0,
+      "componentRef": "crates/sdkwork-routes-assets-app-api/specs/component.spec.json",
+      "routeManifestRef": "crates/sdkwork-routes-assets-app-api/src/lib.rs#gateway_route_manifest",
+      "sourceRef": "crates/sdkwork-routes-assets-app-api/Cargo.toml"
+    }
+  ]
 }

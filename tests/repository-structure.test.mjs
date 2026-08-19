@@ -39,8 +39,9 @@ test('repository root documents unified asset platform layout', () => {
   readUtf8('apps/sdkwork-assets-common/packages/sdkwork-assets-core/package.json');
 });
 
-test('workspace links drive app sdk and utils', () => {
+test('workspace links assets and drive app sdks', () => {
   const workspace = readUtf8('pnpm-workspace.yaml');
+  assert.match(workspace, /sdkwork-assets-app-sdk-typescript/);
   assert.match(workspace, /sdkwork-drive-app-sdk-typescript/);
   assert.match(workspace, /sdkwork-utils-typescript/);
 });
@@ -55,6 +56,15 @@ test('pc react app root exists with component spec', () => {
 test('mobile placeholders are reserved under apps/', () => {
   assert.equal(fs.existsSync(path.join(repoRoot, 'apps/sdkwork-assets-h5/.gitkeep')), true);
   assert.equal(fs.existsSync(path.join(repoRoot, 'apps/sdkwork-assets-flutter-mobile/.gitkeep')), true);
+});
+
+test('assets app SDK family declares component spec and composed operations', () => {
+  readUtf8('sdks/sdkwork-assets-app-sdk/specs/component.spec.json');
+  const operations = readUtf8(
+    'sdks/sdkwork-assets-app-sdk/sdkwork-assets-app-sdk-typescript/composed/operations.ts',
+  );
+  assert.match(operations, /assets\.list/);
+  assert.match(operations, /sdkwork-assets-app-api/);
 });
 
 test('pc application root follows apps/sdkwork-assets-pc layout', () => {

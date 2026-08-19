@@ -40,7 +40,7 @@ Read `apps/sdkwork-assets-pc/sdkwork.app.config.json` before changing applicatio
 
 ## Framework Rules
 
-- All asset catalog and upload operations MUST use `@sdkwork/drive-app-sdk`. No raw HTTP to Drive APIs.
+- Global asset catalog operations MUST use `@sdkwork/assets-app-sdk`. Upload and Drive storage operations MUST use `@sdkwork/drive-app-sdk`. No raw HTTP to platform APIs.
 - Shared TypeScript contracts MUST use `@sdkwork/assets-core`. PC commons re-exports only; do not fork MediaResource shapes.
 - Modality Rust services MUST integrate through canonical provider SPI and adapter packages, then normalize to `sdkwork-assets-ingestion` batches. Raw provider HTTP is forbidden.
 - Shared TypeScript helpers MUST use `@sdkwork/utils`. Do not duplicate utils in local commons.

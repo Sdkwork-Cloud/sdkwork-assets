@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "kind": "sdkwork.component.spec",
+  "component": {
+    "name": "sdkwork-routes-assets-app-api",
+    "displayName": "sdkwork-routes-assets-app-api",
+    "version": "0.1.0",
+    "type": "web-backend-service",
+    "root": "crates/sdkwork-routes-assets-app-api",
+    "domain": "content",
+    "capability": "assets",
+    "languages": [
+      "rust"
+    ],
+    "generated": false,
+    "manifests": [
+      "Cargo.toml"
+    ],
+    "surface": "app-api"
+  },
+  "canonicalSpecs": [
+    {
+      "file": "RUST_CODE_SPEC.md",
+      "path": "../../../sdkwork-specs/RUST_CODE_SPEC.md",
+      "purpose": "Rust route crate responsibility and layout rules."
+    },
+    {
+      "file": "WEB_BACKEND_SPEC.md",
+      "path": "../../../sdkwork-specs/WEB_BACKEND_SPEC.md",
+      "purpose": "HTTP backend route/service/repository boundary rules."
+    },
+    {
+      "file": "API_SPEC.md",
+      "path": "../../../sdkwork-specs/API_SPEC.md",
+      "purpose": "HTTP API surface and route manifest rules."
+    },
+    {
+      "file": "DRIVE_SPEC.md",
+      "path": "../../../sdkwork-specs/DRIVE_SPEC.md",
+      "purpose": "Drive-backed asset catalog storage rules."
+    }
+  ],
+  "contracts": {
+    "layerRole": "backend-route",
+    "publicExports": [
+      "."
+    ],
+    "runtimeEntrypoints": [
+      "gateway_route_manifest",
+      "gateway_mount",
+      "gateway_mount_business",
+      "build_app_business_router"
+    ],
+    "routeManifest": "src/lib.rs#gateway_route_manifest",
+    "sdkClients": [],
+    "sdkDependencies": [],
+    "dependencyApiExports": [],
+    "dependencyApiSurfaces": [],
+    "events": [],
+    "configKeys": []
+  },
+  "verification": {
+    "commands": [
+      "cargo test --manifest-path crates/sdkwork-routes-assets-app-api/Cargo.toml"
+    ]
+  }
+}

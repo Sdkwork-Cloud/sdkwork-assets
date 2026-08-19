@@ -6,13 +6,14 @@
 Modality backends (image/video/music/audio)
   -> cloudrouter_open_sdk::SdkworkAiClient
   -> sdkwork-assets-ingestion (MediaArtifactBatch + DriveImportPlan)
-  -> sdkwork-drive (ai_generated import + /assets catalog)
+  -> sdkwork-assets (`/app/v3/api/assets*` catalog)
+  -> sdkwork-drive (storage + uploader)
 
 Browser (`apps/sdkwork-assets-pc`)
   -> @sdkwork/assets-core (contracts)
-  -> Drive App SDK (assets.list, assets.get, uploader.*)
+  -> @sdkwork/assets-app-sdk (catalog) + @sdkwork/drive-app-sdk (uploader.*)
   -> Platform API Gateway
-  -> sdkwork-drive (global assets authority)
+  -> sdkwork-assets (global assets catalog authority)
 ```
 
 See [TECH-UNIFIED-ASSETS-PLATFORM.md](./TECH-UNIFIED-ASSETS-PLATFORM.md) for the full platform model.
@@ -21,7 +22,7 @@ See [TECH-UNIFIED-ASSETS-PLATFORM.md](./TECH-UNIFIED-ASSETS-PLATFORM.md) for the
 
 | Layer | Owner | This repository |
 | --- | --- | --- |
-| Global assets API | `sdkwork-drive` | Consumer only |
+| Global assets API | `sdkwork-assets` | Owner (catalog API + SDK) |
 | Upload lifecycle | `sdkwork-drive` | Consumer only |
 | Unified asset contracts + ingestion | `sdkwork-assets` | Owner (`packages/`, `crates/`) |
 | Asset UI | `sdkwork-assets` | Owner |
@@ -36,7 +37,7 @@ crates/sdkwork-assets-ingestion/         Drive import planning
 crates/sdkwork-assets-ingestion-drive/  Drive uploader execution adapter
 
 apps/sdkwork-assets-pc/
-  packages/sdkwork-assets-pc-core       SDK client boundary (Drive)
+  packages/sdkwork-assets-pc-core       SDK client boundary (assets + drive upload)
   packages/sdkwork-assets-pc-commons    Re-exports @sdkwork/assets-core + @sdkwork/utils
   packages/sdkwork-assets-pc-assets     Asset center, choose-asset, gallery, services
   packages/sdkwork-assets-pc-shell      Routing and layout

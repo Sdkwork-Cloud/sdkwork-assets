@@ -1,7 +1,7 @@
 import { useDeferredValue, useMemo } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import type { AssetItem, AssetListData } from '@sdkwork/assets-pc-core';
-import { useDriveAppClient } from '@sdkwork/assets-pc-core';
+import { useAssetsAppClient, useDriveAppClient } from '@sdkwork/assets-pc-core';
 import { createAssetCatalogService } from '../services/assetCatalogService';
 import { getNextAssetsCursor } from '../utils/assetPagination';
 import {
@@ -34,8 +34,12 @@ export function useAssetsListInfiniteQuery({
   const deferredSearch = useDeferredValue(search);
   const deferredKind = useDeferredValue(kind);
   const deferredSourceType = useDeferredValue(sourceType);
-  const client = useDriveAppClient();
-  const service = useMemo(() => createAssetCatalogService(client), [client]);
+  const assetsClient = useAssetsAppClient();
+  const driveClient = useDriveAppClient();
+  const service = useMemo(
+    () => createAssetCatalogService({ assets: assetsClient, drive: driveClient }),
+    [assetsClient, driveClient],
+  );
 
   return useInfiniteQuery({
     queryKey: ['assets', queryScope, deferredSearch, deferredKind, deferredSourceType],

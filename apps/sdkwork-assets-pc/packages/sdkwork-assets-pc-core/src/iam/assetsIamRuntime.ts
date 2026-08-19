@@ -1,4 +1,5 @@
 import { createClient, type SdkworkAppClient } from '@sdkwork/iam-app-sdk';
+import { createClient as createAssetsAppClient, type SdkworkAppClient as SdkworkAssetsAppClient } from '@sdkwork/assets-app-sdk';
 import {
   createSdkworkAppbasePcAuthRuntime,
   type SdkworkAppbasePcAuthRuntimeComposition,
@@ -9,6 +10,7 @@ import type { AuthTokenManager } from '@sdkwork/sdk-common';
 import { createTokenManager } from '@sdkwork/sdk-common';
 import { createDriveAppClient, type SdkworkDriveAppClient } from '@sdkwork/drive-app-sdk';
 
+import { resetAssetsAppClient } from '../sdk/assetsClientCache';
 import { resetDriveAppClient } from '../sdk/driveClientCache';
 import {
   getAssetsDeploymentProfile,
@@ -29,6 +31,7 @@ export interface AssetsIamBundle {
   tokenManager: AuthTokenManager;
   appbaseApp: SdkworkAppClient;
   runtime: AssetsIamRuntime;
+  createAssetsClient: () => SdkworkAssetsAppClient;
   createDriveClient: () => SdkworkDriveAppClient;
 }
 
@@ -102,6 +105,7 @@ function createAssetsIamComposition(): SdkworkAppbasePcAuthRuntimeComposition {
     createAppbaseAppClient: () => appbaseApp,
     hooks: {
       onSessionChanged: () => {
+        resetAssetsAppClient();
         resetDriveAppClient();
       },
     },
@@ -140,6 +144,13 @@ export function getAssetsIamBundle(): AssetsIamBundle {
     tokenManager,
     appbaseApp: composition.appbaseApp,
     runtime: composition.runtime,
+    createAssetsClient: () =>
+      createAssetsAppClient({
+        authMode: 'dual-token',
+        baseUrl: normalizeGeneratedSdkBaseUrl(getPlatformApiGatewayHttpUrl(), APP_API_PREFIX),
+        platform: 'web',
+        tokenManager,
+      }),
     createDriveClient: () =>
       createDriveAppClient({
         authMode: 'dual-token',

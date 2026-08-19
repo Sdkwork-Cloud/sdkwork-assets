@@ -36,6 +36,7 @@
     "@sdkwork/assets-core": "workspace:*",
     "@sdkwork/assets-pc-commons": "workspace:*",
     "@sdkwork/assets-pc-core": "workspace:*",
+    "@sdkwork/assets-app-sdk": "workspace:*",
     "@sdkwork/drive-app-sdk": "workspace:*",
     "@sdkwork/generations-pc-workspace": "workspace:*",
     "@sdkwork/utils": "workspace:*",

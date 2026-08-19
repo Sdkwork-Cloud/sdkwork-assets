@@ -8,8 +8,8 @@ SDKWork Assets is the **unified asset management platform** for AI-generated and
 
 | Layer | Owner | This repository |
 | --- | --- | --- |
+| Global assets HTTP API (`/app/v3/api/assets*`) | `sdkwork-assets` | Owner (catalog API + SDK) |
 | Object storage, upload sessions, presign | `sdkwork-drive` | Consumer / orchestrator |
-| Global assets HTTP API (`/app/v3/api/assets*`) | `sdkwork-drive` | Consumer |
 | **Unified asset contracts + multi-artifact ingestion** | **`sdkwork-assets`** | **Owner (shared libraries)** |
 | AI provider routing (`/v1/*`) | `sdkwork-cloudrouter` (`cloudrouter-open-sdk`) | Integration profile only |
 | Modality generation jobs (image/video/music/audio) | respective domain repos | Consumers of assets-ingestion |
@@ -26,10 +26,11 @@ Modality backend services **MUST** invoke provider capabilities through **`cloud
 | [`crates/sdkwork-assets-ingestion/`](./crates/sdkwork-assets-ingestion/) | Rust multi-artifact Drive import planning + CloudRouter integration boundary |
 | [`crates/sdkwork-assets-ingestion-drive/`](./crates/sdkwork-assets-ingestion-drive/) | Rust Drive uploader execution adapter |
 | [`apps/sdkwork-assets-pc/`](./apps/sdkwork-assets-pc/) | PC browser client (asset center, choose-asset) |
+| [`sdks/sdkwork-assets-app-sdk/`](./sdks/sdkwork-assets-app-sdk/) | Composed `@sdkwork/assets-app-sdk` consumer facade |
 | [`specs/`](./specs/) | Topology, component spec, governance |
 | [`docs/`](./docs/) | PRD, technical architecture |
 
-**Intentionally absent at root:** `apis/` (no owned HTTP surfaces), `database/` (metadata owned by Drive), `sdks/` (consumes `@sdkwork/drive-app-sdk`).
+**Intentionally absent at root:** `database/` (metadata stored in Drive tables). Catalog HTTP authority and SDK generation live under `apis/app-api/assets/` and `sdks/sdkwork-assets-app-sdk/`.
 
 ## Documentation
 

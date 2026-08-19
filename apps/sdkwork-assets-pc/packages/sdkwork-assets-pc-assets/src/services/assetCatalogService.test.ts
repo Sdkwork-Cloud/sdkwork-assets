@@ -1,32 +1,36 @@
 import { describe, expect, it, vi } from 'vitest';
 import { createAssetCatalogService } from './assetCatalogService';
-import type { DriveAppClient } from '@sdkwork/assets-pc-core';
+import type { AssetCatalogClients } from './assetCatalogService';
 
-function createMockClient(): DriveAppClient {
-  return {
-    drive: {
-      assets: {
-        list: vi.fn(async () => ({
-          items: [{ assetId: 'a1', title: 'Test', driveNodeId: 'a1', driveSpaceId: 's1', nodeType: 'file', assetKind: 'image', lifecycleStatus: 'active', createdAt: '', updatedAt: '' }],
-          pageInfo: { mode: 'cursor' },
-        })),
-        get: vi.fn(),
-        archive: vi.fn(),
-        restore: vi.fn(),
-      },
+function createMockClients(): AssetCatalogClients {
+  const assetsClient = {
+    assets: {
+      list: vi.fn(async () => ({
+        items: [{ assetId: 'a1', title: 'Test', driveNodeId: 'a1', driveSpaceId: 's1', nodeType: 'file', assetKind: 'image', lifecycleStatus: 'active', createdAt: '', updatedAt: '' }],
+        pageInfo: { mode: 'cursor' },
+      })),
+      retrieve: vi.fn(),
+      archive: vi.fn(),
+      restore: vi.fn(),
     },
+  };
+  const driveClient = {
     uploader: {
-      upload: vi.fn(),
+      uploadAttachment: vi.fn(),
     },
-  } as unknown as DriveAppClient;
+  };
+  return {
+    assets: assetsClient as unknown as AssetCatalogClients['assets'],
+    drive: driveClient as unknown as AssetCatalogClients['drive'],
+  };
 }
 
 describe('assetCatalogService', () => {
-  it('lists assets through drive sdk', async () => {
-    const client = createMockClient();
-    const service = createAssetCatalogService(client);
+  it('lists assets through assets app sdk', async () => {
+    const clients = createMockClients();
+    const service = createAssetCatalogService(clients);
     const page = await service.listAssets({ q: 'logo' });
     expect(page.items).toHaveLength(1);
-    expect(client.drive.assets.list).toHaveBeenCalled();
+    expect(clients.assets.assets.list).toHaveBeenCalled();
   });
 });

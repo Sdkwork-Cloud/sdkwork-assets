@@ -27,15 +27,19 @@ test('governance exceptions cover consumer client posture', () => {
   assert.match(governance, /EX-2026-ASSETS-003/);
 });
 
-test('assets service uses drive sdk not raw fetch', () => {
+test('assets service uses assets sdk for catalog and drive sdk for upload', () => {
   const service = readUtf8(
     'apps/sdkwork-assets-pc/packages/sdkwork-assets-pc-assets/src/services/assetCatalogService.ts',
   );
-  assert.match(service, /@sdkwork\/drive-app-sdk/);
+  const core = readUtf8('apps/sdkwork-assets-pc/packages/sdkwork-assets-pc-core/src/sdk/index.ts');
+  assert.match(core, /@sdkwork\/assets-app-sdk/);
+  assert.match(core, /@sdkwork\/drive-app-sdk/);
+  assert.match(service, /clients\.assets\.assets\.list/);
+  assert.match(service, /clients\.drive\.uploader\.uploadAttachment/);
   assert.doesNotMatch(service, /fetch\s*\(/);
 });
 
-test('asset center uses drive cursor pagination', () => {
+test('asset center uses assets cursor pagination', () => {
   const hook = readUtf8(
     'apps/sdkwork-assets-pc/packages/sdkwork-assets-pc-assets/src/hooks/useAssetsListInfiniteQuery.ts',
   );
@@ -50,6 +54,14 @@ test('asset center uses drive cursor pagination', () => {
   assert.match(filters, /kind/);
   assert.match(filters, /sourceType/);
   assert.match(pagination, /nextCursor/);
+});
+
+test('assets list infinite query uses assets app sdk client', () => {
+  const hook = readUtf8(
+    'apps/sdkwork-assets-pc/packages/sdkwork-assets-pc-assets/src/hooks/useAssetsListInfiniteQuery.ts',
+  );
+  assert.match(hook, /useAssetsAppClient/);
+  assert.match(hook, /useDriveAppClient/);
 });
 
 test('archive restore patches list cache for drive list lifecycle gap', () => {
