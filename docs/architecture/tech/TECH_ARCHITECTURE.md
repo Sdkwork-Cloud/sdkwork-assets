@@ -78,7 +78,7 @@ Asset list and picker UIs share `useAssetsListInfiniteQuery` (cursor pagination,
 ## Local development
 
 - Vite dev server (port `4180`) proxies `/app/v3/api` to the platform gateway or standalone app ingress per `VITE_SDKWORK_ASSETS_DEPLOYMENT_PROFILE`.
-- Topology env files under `configs/topology/` supply profile-specific gateway URLs.
+- Topology env files under `etc/topology/` supply profile-specific gateway URLs.
 
 ## Deployment
 

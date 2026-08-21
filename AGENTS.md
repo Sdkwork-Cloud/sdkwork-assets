@@ -27,7 +27,7 @@ Read `apps/sdkwork-assets-pc/sdkwork.app.config.json` before changing applicatio
 - `crates/sdkwork-assets-contract/`, `crates/sdkwork-assets-ingestion/`: Rust platform libraries.
 - `apps/sdkwork-assets-pc/`: primary PC browser application root (`APP_PC_ARCHITECTURE_SPEC.md`).
 - `specs/`: repository contracts (`topology.spec.json`, `component.spec.json`, governance).
-- `configs/topology/`: deployment profile env files.
+- `etc/topology/`: deployment profile env files.
 - `docs/`: PRD and technical architecture (`TECH-UNIFIED-ASSETS-PLATFORM.md`).
 
 ## Required Specs By Task Type

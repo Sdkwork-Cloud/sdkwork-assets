@@ -4,12 +4,14 @@
   "appId": "sdkwork-assets",
   "applicationCode": "assets",
   "archetype": "application-http-gateway",
-  "profileRoot": "configs/topology",
+  "profileRoot": "etc/topology",
   "profilePattern": "{deploymentProfile}.{environment}.env",
   "vocabulary": {
     "environment": {
       "allowed": [
         "development",
+        "test",
+        "staging",
         "production"
       ]
     },
@@ -32,10 +34,14 @@
     "desktopBuildProfileId": "standalone.production"
   },
   "profileFiles": {
-    "standalone.development": "configs/topology/standalone.development.env",
-    "cloud.development": "configs/topology/cloud.development.env",
-    "cloud.production": "configs/topology/cloud.production.env",
-    "standalone.production": "configs/topology/standalone.production.env"
+    "standalone.development": "etc/topology/standalone.development.env",
+    "cloud.development": "etc/topology/cloud.development.env",
+    "cloud.production": "etc/topology/cloud.production.env",
+    "standalone.production": "etc/topology/standalone.production.env",
+    "standalone.test": "etc/topology/standalone.test.env",
+    "standalone.staging": "etc/topology/standalone.staging.env",
+    "cloud.test": "etc/topology/cloud.test.env",
+    "cloud.staging": "etc/topology/cloud.staging.env"
   },
   "envKeys": {
     "deploymentProfile": "SDKWORK_ASSETS_DEPLOYMENT_PROFILE",
@@ -109,6 +115,51 @@
           }
         ],
         "healthSurfaces": []
+      },
+      "standalone.test": {
+        "processes": [
+          {
+            "id": "web-renderer",
+            "package": "sdkwork-assets-pc-react",
+            "script": "dev",
+            "required": true,
+            "role": "api-standalone-gateway"
+          }
+        ],
+        "healthSurfaces": []
+      },
+      "standalone.staging": {
+        "processes": [
+          {
+            "id": "web-renderer",
+            "package": "sdkwork-assets-pc-react",
+            "script": "dev",
+            "required": true,
+            "role": "client"
+          }
+        ],
+        "healthSurfaces": []
+      },
+      "cloud.test": {
+        "processes": [],
+        "healthSurfaces": [
+          "application.public-ingress",
+          "platform.api-gateway"
+        ]
+      },
+      "cloud.staging": {
+        "processes": [
+          {
+            "id": "web-renderer",
+            "package": "sdkwork-assets-pc-react",
+            "script": "build",
+            "required": true,
+            "role": "client"
+          }
+        ],
+        "healthSurfaces": [
+          "platform.api-gateway"
+        ]
       }
     }
   },
@@ -116,7 +167,7 @@
     "targets": [
       {
         "id": "web-browser-static",
-        "profile": "cloud.split-services.production",
+        "profile": "cloud.production",
         "platform": "web",
         "architecture": "any",
         "formats": [
